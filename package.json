@@ -1,0 +1,29 @@
+{
+  "name": "plantium",
+  "version": "1.0.0",
+  "description": "A smart agricultural crop planning system designed to assist farmers in making better decisions about what to plant, when to plant it, and how to manage their land efficiently. PLANTIUM integrates real-time environmental data from temperature and soil moisture sensors (ESP32), as well as weather forecasts via the OpenWeatherMap API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oridotexe/Plantium.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/oridotexe/Plantium/issues"
+  },
+  "homepage": "https://github.com/oridotexe/Plantium#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
