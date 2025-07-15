@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 
@@ -15,8 +16,10 @@ app.get('/', (req, res) => {
   res.send('¡Servidor corriendo!');
 });
 
+// Rutas de api
+// Ruta de usuarios
+
 // Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
-
