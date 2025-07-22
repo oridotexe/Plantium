@@ -14,15 +14,35 @@ git clone https://github.com/oridotexe/Plantium.git
 cd Plantium
 ```
 
-3. Instala las dependencias:
+3. Crea tu entorno virtual y activalo:
 
 ```Bash
-npm install
+python -m venv venv
 ```
 
-4. Inicia el servidor en modo desarrollo (usa nodemon para auto-reinicio al cambiar archivos):
+- En Windows:
+```Powershell
+.\venv\Scripts\Activate.ps1
+```
+
+- En Linux:
 ```Bash
-npx nodemon services/index.js
+source venv/bin/activate
+```
+
+4. Instala dependencias:
+```Bash
+pip install -r requirements.txt
+```
+
+4. Realiza las migraciones:
+```Bash
+python manage.py migrate
+```
+
+5. Corre el servidor:
+```Bash
+python manage.py runserver
 ```
 
 
