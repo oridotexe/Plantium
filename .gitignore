@@ -1,6 +1,13 @@
 # virtual environment 
 env/
 venv/
+.env
 
 # Database
 *.sqlite3
+
+# Python
+__pycache__/
+*.pyc
+*.py[cod]
+*$py.class
