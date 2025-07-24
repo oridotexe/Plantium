@@ -14,8 +14,9 @@
         <h2>NavBar</h2>
         <ul>
             <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'plants' %}">Plants</a></li>
             {% if request.user.is_authenticated %}
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'plants' %}">Plants</a></li>
                 <li><a href="{% url 'exit' %}">Salir</a></li>
             {% else %}
                 <li><a href="{% url 'login' %}">Sign in</a></li>
