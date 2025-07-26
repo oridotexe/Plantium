@@ -13,8 +13,19 @@
 
 /* Navbar */
 .navbar {
-    background: linear-gradient(135deg, var(--dark-green), var(--light-green)); 
+    background: linear-gradient(90deg, var(--dark-green), var(--light-green)); 
     padding: 10px 0;
+}
+
+.navbar-container {
+    position: absolute;  
+    top: 0;
+    left: 60px; 
+    right: 60px; 
+    width: auto; 
+    z-index: 10; 
+    background-color: var(--white);
+    border-bottom: 2px solid var(--white); 
 }
 
 .navbar-toggler-icon {
@@ -59,20 +70,66 @@
 
 /* Home */
 
-.navbar-style {
-    background: linear-gradient(135deg, var(--dark-green), var(--light-green)); 
-}
-
-.items-navbar {
+.main-section {
     display: flex;
-    justify-content: space-around;
-}
-
-.home {
-    background: linear-gradient(135deg, var(--dark-green), var(--light-green)); 
-    /* height: 100vh;
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    text-align: center; */
+    height: 100vh;
+    background: linear-gradient(90deg, var(--dark-green), var(--light-green)) !important;
+    padding: 40px;
 }
+
+.main-content {
+    max-width: 600px;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-start; 
+}
+
+.main-content .subtitle{
+    font-family: 'Open Sans Hebrew', sans-serif;
+    font-size: 1.10rem;
+    font-weight: 400;
+    margin-left: 90px;
+}
+.main-content h1 {    
+    font-family: 'Montserrat', sans-serif;
+    font-size: 6rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    margin-left: 90px;
+}
+
+.main-content .home-text {
+    font-family: 'Open Sans Hebrew', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-left: 250px;
+    font-style: italic; 
+    justify-content: center;  
+    align-items: flex-start; 
+    text-align: center;
+}
+
+.main-image {
+    position: relative;
+    display: flex;
+    justify-content: flex-end; 
+    left: 3%;
+}
+
+.main-image img {
+    width: 110%;
+    height: auto;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+
+
+
+
+
+
