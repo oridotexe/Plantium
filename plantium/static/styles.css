@@ -1,0 +1,78 @@
+/* Establecer los colores como variables */
+:root {
+    --dark-green: #4A6B46;
+    --light-green: #A1C08B;
+    --pastel-green: #B8D8A4;
+    --forest-green: #2E552C;
+    --white: #F8F8F5;
+    --olive-green: #667844;
+    --dark-gray: #202020;
+    --intense-green: #2B5A32;
+    --bright-green: #AADD66;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(135deg, var(--dark-green), var(--light-green)); 
+    padding: 10px 0;
+}
+
+.navbar-toggler-icon {
+    background-color: var(--white); 
+}
+
+.navbar-colors-items {
+    color: var(--white);
+    font-weight: 700;
+    font-size: larger;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--bright-green) !important; 
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--bright-green) !important; 
+    font-weight: 700;
+}
+
+/* Toggler  */
+.navbar-toggler {
+    border: none;  
+}
+
+.cta-button {
+    background-color: var(--pastel-green);
+    color: var(--intense-green);
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.cta-button:hover {
+    background-color: var(--forest-green);
+    color: var(--white);
+}
+
+
+
+/* Home */
+
+.navbar-style {
+    background: linear-gradient(135deg, var(--dark-green), var(--light-green)); 
+}
+
+.items-navbar {
+    display: flex;
+    justify-content: space-around;
+}
+
+.home {
+    background: linear-gradient(135deg, var(--dark-green), var(--light-green)); 
+    /* height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; */
+}
