@@ -6,6 +6,6 @@
     <form action="/crop/create" method="POST">
         {% csrf_token %}
         {{ form | crispy }}
-        <button type="submit">iniciar sesion</button>
+        <button type="submit" class="btn btn-success">Crear</button>
     </form>
 {% endblock %}

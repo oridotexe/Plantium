@@ -1,0 +1,14 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+
+    {% for crop in crops %}
+        <ul>
+            <li>
+                {{crop.name}} - Variedad: {{crop.variety}} - Fecha: {{crop.init_date}} <br>
+                Ultimo riego:  {% if crop.last_watering == none %} No se ha regado {% else %} {{crop.last_watering}} {% endif %}
+                <a href={% url "delete_crop" crop.id %}>Eliminar</a>
+            </li>
+        </ul>
+    {% endfor %}
+
+{% endblock %}

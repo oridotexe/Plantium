@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CreateCropForm
+from .models import Crop
 
 # Create your views here.
 
@@ -24,6 +25,11 @@ def exit(request):
     return redirect('login')
 
 @login_required
+def my_crops(request):
+    crops = Crop.objects.filter(user=request.user).order_by('-init_date')
+    return render(request, 'crops.html', {'crops': crops})
+
+@login_required
 def create_crop(request):
     if request.method == 'POST':
         form = CreateCropForm(request.POST)
@@ -37,3 +43,9 @@ def create_crop(request):
         form = CreateCropForm()
 
     return render(request, 'create_crop.html', {'form': form})
+
+@login_required
+def delete_crop(request, id_crop):
+    crop = get_object_or_404(Crop, pk=id_crop, user=request.user)
+    crop.delete()
+    return redirect('my_crops')

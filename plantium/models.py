@@ -20,11 +20,11 @@ class Plant(models.Model):
 
 
 class Crop(models.Model):
-    name = models.CharField(max_length=100)
-    plant = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name="crops") # NOQA
+    name = models.CharField(max_length=100, verbose_name="Nombre del Cultivo")
+    plant = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name="crops", verbose_name="Planta") # NOQA
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="crops") # NOQA
-    init_date = models.DateField()
-    last_watering = models.DateField(blank=True, null=True)
+    init_date = models.DateField(verbose_name="Fecha de inicio")
+    last_watering = models.DateField(blank=True, null=True, verbose_name="Ultimo riego")
 
     class Meta:
         unique_together = ['name', 'user']
