@@ -25,6 +25,7 @@ class Crop(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="crops") # NOQA
     init_date = models.DateField(verbose_name="Fecha de inicio")
     last_watering = models.DateField(blank=True, null=True, verbose_name="Ultimo riego")
+    status = models.IntegerField(default=0)
 
     class Meta:
         unique_together = ['name', 'user']
