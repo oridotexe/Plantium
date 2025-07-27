@@ -28,8 +28,11 @@ def exit(request):
 
 @login_required
 def my_crops(request):
-    crops = Crop.objects.filter(user=request.user).order_by('-init_date')
-    return render(request, 'crops.html', {'crops': crops})
+    crops = Crop.objects.filter(user=request.user, status__in=[0,1]).order_by('-init_date')
+    
+    actives = [crop for crop in crops if crop.status == 0]
+    finished = [crop for crop in crops if crop.status == 1]
+    return render(request, 'crops.html', {'actives': actives, 'finished': finished})
 
 @login_required
 def create_crop(request):
@@ -48,5 +51,6 @@ def create_crop(request):
 @login_required
 def delete_crop(request, id_crop):
     crop = get_object_or_404(Crop, pk=id_crop, user=request.user)
-    crop.delete()
+    crop.status = 2
+    crop.save()
     return redirect('my_crops')
