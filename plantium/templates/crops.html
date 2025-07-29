@@ -7,8 +7,10 @@
         <ul>
             <li>
                 {{crop.name}} - Estado: {{crop.status}} - Fecha: {{crop.init_date}} <br>
-                Ultimo riego:  {% if crop.last_watering is none %} No se ha regado {% else %} {{crop.last_watering}} {% endif %}
-                <br><a href={% url "delete_crop" crop.id %}>Eliminar</a>
+                Planta: {{crop.plant.name}} - Variedad: {{crop.plant.variety}} <br>
+                Ultimo riego:  {% if crop.last_watering is none %} No se ha regado {% else %} {{crop.last_watering}} {% endif %} <br>
+                <a href={% url "delete_crop" crop.id %}>Eliminar</a>
+                <a href={% url "update_crop" crop.id %}>Actualizar</a>
             </li>
         </ul>
     {% endfor %}

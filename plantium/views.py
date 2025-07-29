@@ -28,7 +28,7 @@ def exit(request):
 
 @login_required
 def my_crops(request):
-    crops = Crop.objects.filter(user=request.user, status__in=[0,1]).order_by('-init_date')
+    crops = Crop.objects.filter(user=request.user, status__in=[0,1]).select_related('plant').order_by('-init_date')
     
     actives = [crop for crop in crops if crop.status == 0]
     finished = [crop for crop in crops if crop.status == 1]
@@ -54,3 +54,17 @@ def delete_crop(request, id_crop):
     crop.status = 2
     crop.save()
     return redirect('my_crops')
+
+@login_required
+def update_crop(request, id_crop):
+    crop = get_object_or_404(Crop, pk=id_crop, user=request.user)
+
+    if request.method == 'GET':
+        form = CreateCropForm(instance=crop)
+    else:
+        form = CreateCropForm(request.POST, user=request.user, instance=crop)
+        if form.is_valid():
+            form.save()
+            return redirect('my_crops')
+        
+    return render(request, 'update_crop.html', {'form': form, 'crop': crop})
