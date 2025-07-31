@@ -56,6 +56,25 @@ def delete_crop(request, id_crop):
     return redirect('my_crops')
 
 @login_required
+def culminate_crop(request, id_crop):
+    crop = get_object_or_404(Crop, pk=id_crop, user=request.user)
+    crop.status = 1
+    crop.save()
+    return redirect('my_crops')
+
+@login_required
+def recover_crop(request, id_crop):
+    crop = get_object_or_404(Crop, pk=id_crop, user=request.user)
+    crop.status = 0
+    crop.save()
+    return redirect('my_crops')
+
+@login_required
+def deleted_crops(request):
+    crops = Crop.objects.filter(user=request.user, status__in=[2]).select_related('plant').order_by('-init_date')
+    return render(request, 'recover_crop.html', {'crops': crops})
+
+@login_required
 def update_crop(request, id_crop):
     crop = get_object_or_404(Crop, pk=id_crop, user=request.user)
 

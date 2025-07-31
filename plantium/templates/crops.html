@@ -11,6 +11,7 @@
                 Ultimo riego:  {% if crop.last_watering is none %} No se ha regado {% else %} {{crop.last_watering}} {% endif %} <br>
                 <a href={% url "delete_crop" crop.id %}>Eliminar</a>
                 <a href={% url "update_crop" crop.id %}>Actualizar</a>
+                <a href={% url "culminate_crop" crop.id %}>Marcar como terminado</a>
             </li>
         </ul>
     {% endfor %}
@@ -26,5 +27,9 @@
             </li>
         </ul>
     {% endfor %}
+
+    <p>Para recuperar tus cultivos eliminados presiona 
+        <a href={% url "deleted_crops" %}>aquí.</a>
+    </p>
 
 {% endblock %}
