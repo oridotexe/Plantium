@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CreateCropForm
 from .models import Crop
+from .utils import calculate_next_watering
 
 # Create your views here.
 
@@ -32,6 +33,10 @@ def my_crops(request):
     
     actives = [crop for crop in crops if crop.status == 0]
     finished = [crop for crop in crops if crop.status == 1]
+
+    for crop in actives:
+        crop.days_remaining = calculate_next_watering(crop.last_watering, crop.plant.watering_freq)
+
     return render(request, 'crops.html', {'actives': actives, 'finished': finished})
 
 @login_required
