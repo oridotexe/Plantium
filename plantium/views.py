@@ -5,23 +5,28 @@ from .forms import CreateCropForm
 
 # Create your views here.
 
+
 def home(request):
     return render(request, 'home.html')
 
-@login_required
+
 def dashboard(request):
     return render(request, 'dashboard.html')
+
 
 @login_required
 def plants(request):
     return render(request, 'plants.html')
 
+
 def signup(request):
     return render(request, 'registration/signup.html')
+
 
 def exit(request):
     logout(request)
     return redirect('login')
+
 
 @login_required
 def create_crop(request):
