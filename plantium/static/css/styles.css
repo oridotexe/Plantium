@@ -1,0 +1,52 @@
+:root {
+  --text: #000000;
+  --bg: #fcf6eb;
+  --dashboard-bg: #e4fbc944;
+  --primary: #5c7d55;
+  --secondary: #eceabe;
+  --accent: #aadd66;
+}
+
+body,
+html,
+* {
+  font-family: "Montserrat", sans-serif;
+}
+.dashboard-bg {
+  background-color: var(--dashboard-bg);
+}
+.sidebar {
+  background-color: var(--primary);
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    height: 100vh;
+  }
+}
+
+.cultivo-img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+.create-crop-button {
+  width: 100%;
+  color: white;
+  border-radius: 16px;
+  background-color: var(--primary);
+}
+.create-crop-button:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+@media (min-width: 992px) {
+  .grow {
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
