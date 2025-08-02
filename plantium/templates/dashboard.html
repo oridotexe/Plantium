@@ -1,17 +1,183 @@
-{% extends 'layouts/base.html' %}
-{% block content %}
-    <h1>Dashboard</h1>
-    {% if request.user.is_authenticated %}
-    <p>Welcome to the home page! {{ user.username | upper }}</p>
-    {% else %}
-    <p>Welcome to the home page! Please log in or sign up.</p>
-    {% endif %}
+{% extends 'layouts/base.html' %} {% block content %} {% load static %}
+<div class="container-fluid dashboard-bg">
+  <div class="row">
+    <!-- Sidebar -->
+    <!-- Botón para colapsar el sidebar (puede ir en tu navbar superior) -->
+    <nav
+      class="navbar navbar-expand-lg sidebar px-3 col-lg-2 flex-lg-column align-items-start"
+    >
+      <div class="container-fluid flex-lg-column align-items-start">
+        <a class="navbar-brand text-white mb-4" href="#">PLANTIUM</a>
+        <button
+          class="navbar-toggler mb-3"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#sidebarMenu"
+          aria-controls="sidebarMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse flex-column w-100"
+          id="sidebarMenu"
+        >
+          <ul class="navbar-nav flex-column w-100">
+            <li class="nav-item mb-2 grow">
+              <a
+                class="nav-link active text-white d-flex align-items-center"
+                href="#"
+              >
+                <img
+                  src="{% static 'img/dashboard.png' %}"
+                  width="25"
+                  height="25"
+                  class="me-2"
+                  alt="Dashboard Icon"
+                />
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item mb-2 grow">
+              <a class="nav-link text-white d-flex align-items-center" href="#">
+                <img
+                  src="{% static 'img/tomato.png' %}"
+                  width="30"
+                  height="30"
+                  class="me-2"
+                  alt="Cultivos Icon"
+                />
+                <span>Cultivos</span>
+              </a>
+            </li>
+            <li class="nav-item mb-2 grow">
+              <a class="nav-link text-white d-flex align-items-center" href="#">
+                <img
+                  src="{% static 'img/plant.png' %}"
+                  width="30"
+                  height="30"
+                  class="me-2"
+                  alt="Plantas Icon"
+                />
+                <span>Plantas</span>
+              </a>
+            </li>
+            <li class="nav-item mb-2 grow">
+              <a class="nav-link text-white d-flex align-items-center" href="#">
+                <img
+                  src="{% static 'img/settings.png' %}"
+                  width="30"
+                  height="30"
+                  class="me-2"
+                  alt="Ajustes Icon"
+                />
+                <span>Ajustes</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-    <a href = "/crop/create" style="text-decoration: none">
-		  Crear cultivo
-	  </a>
+    <!-- Main content -->
+    <main class="col-lg-10 ml-sm-auto px-4">
+      <header class="d-flex justify-content-between align-items-center mt-4">
+        <div>
+          <h2>Dashboard</h2>
+          <small class="text-muted">4:45 pm 21 Jul 2025</small>
+          <h5 class="mt-2">Cultivo con más tiempo</h5>
+        </div>
+        <div class="d-flex align-items-center">
+          <span class="me-2">{{ user.username }}</span>
+          <img
+            src="{% static 'img/user.png' %}"
+            width="30px"
+            height="30px"
+            class="rounded-circle ml-2"
+            alt="Profile"
+          />
+        </div>
+      </header>
 
-    <a href = "{% url "my_crops" %}" style="text-decoration: none">
-		  Ver Cultivos
-	  </a>
-{% endblock %}
+      <div class="row">
+        <div class="col-lg-10 ml-sm-auto px-4">
+          <!-- Main image -->
+          <div class="card mb-2" style="border-radius: 20px">
+            <img
+              src="{%static 'img/fresas.png'%}"
+              height="320px"
+              class="cultivo-img"
+              alt="Campo Fresas"
+              style="border-radius: 20px"
+            />
+            <div
+              class="card-img-overlay d-flex align-items-center justify-content-center"
+            >
+              <h3 class="text-white font-weight-bold">CAMPO FRESAS</h3>
+            </div>
+          </div>
+
+          <!-- Pronósticos & Info -->
+          <div class="card mb-3" style="border-radius: 20px">
+            <div class="card-body">
+              <h4 class="card-title">Pronósticos</h4>
+              <!-- Chart placeholder -->
+              <div
+                style="height: 200px; background: #f8f9fa; border-radius: 10px"
+              >
+                <!-- Integrate chart.js or similar here -->
+                <p class="text-muted text-center pt-5">
+                  [Gráfico de Humedad y Temperatura]
+                </p>
+              </div>
+              <div class="mt-2">
+                <span class="text-primary">72K/1,975 (25%)</span>
+                <span class="float-right">48°C</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- right sidebar-->
+        <div class="col-lg-2 ml-sm-auto px-4">
+          <div class="card mb-3" style="border-radius: 20px">
+            <div class="card-body">
+              <strong>Sabías que...</strong>
+              <p class="mb-0">
+                Cultivar el futuro es más fácil cuando sabes cuándo regar y
+                cuándo esperar.
+              </p>
+            </div>
+          </div>
+          <a href="/crop/create" class="btn create-crop-button mb-3 grow"
+            >Iniciar nuevo cultivo</a
+          >
+
+          <a href = "{% url "my_crops" %}" class="btn create-crop-button mb-3 grow">
+            Ver Cultivos
+          </a>
+          <div class="card mb-2" style="border-radius: 20px">
+            <div class="card-body text-center">
+              <strong>Temperatura</strong>
+              <div>17° C</div>
+            </div>
+          </div>
+          <div class="card mb-2" style="border-radius: 20px">
+            <div class="card-body text-center">
+              <strong>Crecimiento</strong>
+              <div>77%</div>
+            </div>
+          </div>
+          <div class="card mb-2" style="border-radius: 20px">
+            <div class="card-body text-center">
+              <strong>Humedad</strong>
+              <div>30%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {% endblock %}
+  </div>
+</div>
