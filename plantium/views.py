@@ -2,8 +2,8 @@ from pyexpat.errors import messages
 from django.db import IntegrityError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from .forms import CreateCropForm
+from django.contrib.auth import logout, authenticate, login
+from .forms import CreateCropForm, CustomUserCreationForm
 from .models import Crop
 
 # Create your views here.
@@ -19,8 +19,20 @@ def dashboard(request):
 def plants(request):
     return render(request, 'plants.html')
 
-def signup(request):
-    return render(request, 'registration/signup.html')
+def register(request):
+    data = {
+        'form': CustomUserCreationForm()
+    }
+    if request.method == 'POST':
+        user_creation_form = CustomUserCreationForm(data=request.POST)
+        if user_creation_form.is_valid():
+            user = user_creation_form.save()
+            user.email = user_creation_form.cleaned_data['email']
+            user.save()
+            user = authenticate(username=user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password1'])
+            login(request, user)
+            return redirect('dashboard') # P0ll1t0893
+    return render(request, 'registration/register.html', data)
 
 def exit(request):
     logout(request)
