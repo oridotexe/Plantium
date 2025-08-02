@@ -4,20 +4,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login
 from .forms import CreateCropForm, CustomUserCreationForm
-from .models import Crop
+from .models import Crop, Plant
 from .utils import calculate_next_watering
 
 # Create your views here.
 
 def home(request):
     return render(request, 'home.html')
-
-def dashboard(request):
-    return render(request, 'dashboard.html')
-
-@login_required
-def plants(request):
-    return render(request, 'plants.html')
 
 def register(request):
     data = {
@@ -38,6 +31,14 @@ def exit(request):
     logout(request)
     return redirect('login')
 
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
+@login_required
+def plants(request):
+    plants = Plant.objects.all()
+    return render(request, 'plants.html', {'plants': plants})
 
 @login_required
 def my_crops(request):
