@@ -5,6 +5,13 @@ from datetime import date
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Field
 from .models import Crop
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+class CustomUserCreationForm(UserCreationForm):
+	class Meta:
+		model = User
+		fields = ['username', 'email', 'password1', 'password2']
 
 class CreateCropForm(ModelForm):
 	def __init__(self, *args, **kwargs):
