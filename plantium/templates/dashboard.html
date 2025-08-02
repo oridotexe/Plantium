@@ -27,10 +27,10 @@
             <li class="nav-item mb-2 grow">
               <a
                 class="nav-link active text-white d-flex align-items-center"
-                href="#"
+                href="{% url 'dashboard' %}"
               >
                 <img
-                  src="{% static 'img/dashboard.png' %}"
+                  src="{% static 'images/dashboard.png' %}"
                   width="25"
                   height="25"
                   class="me-2"
@@ -40,9 +40,9 @@
               </a>
             </li>
             <li class="nav-item mb-2 grow">
-              <a class="nav-link text-white d-flex align-items-center" href="#">
+              <a class="nav-link text-white d-flex align-items-center" href="{% url 'my_crops' %}">
                 <img
-                  src="{% static 'img/tomato.png' %}"
+                  src="{% static 'images/tomato.png' %}"
                   width="30"
                   height="30"
                   class="me-2"
@@ -52,9 +52,9 @@
               </a>
             </li>
             <li class="nav-item mb-2 grow">
-              <a class="nav-link text-white d-flex align-items-center" href="#">
+              <a class="nav-link text-white d-flex align-items-center" href="{% url 'plants' %}">
                 <img
-                  src="{% static 'img/plant.png' %}"
+                  src="{% static 'images/plant.png' %}"
                   width="30"
                   height="30"
                   class="me-2"
@@ -66,7 +66,7 @@
             <li class="nav-item mb-2 grow">
               <a class="nav-link text-white d-flex align-items-center" href="#">
                 <img
-                  src="{% static 'img/settings.png' %}"
+                  src="{% static 'images/settings.png' %}"
                   width="30"
                   height="30"
                   class="me-2"
@@ -91,7 +91,7 @@
         <div class="d-flex align-items-center">
           <span class="me-2">{{ user.username }}</span>
           <img
-            src="{% static 'img/user.png' %}"
+            src="{% static 'images/user.png' %}"
             width="30px"
             height="30px"
             class="rounded-circle ml-2"
@@ -105,7 +105,7 @@
           <!-- Main image -->
           <div class="card mb-2" style="border-radius: 20px">
             <img
-              src="{%static 'img/fresas.png'%}"
+              src="{%static 'images/fresas.png'%}"
               height="320px"
               class="cultivo-img"
               alt="Campo Fresas"
