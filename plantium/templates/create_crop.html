@@ -1,11 +1,13 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
-    <h1>Crear Cultivo</h1><br>
+    <div class="col-lg-10">
+        <h1>Crear Cultivo</h1><br>
 
-    <form action="{% url 'create_crop' %}" method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-success">Crear</button>
-    </form>
+        <form action="{% url 'create_crop' %}" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success">Crear</button>
+        </form>
+    </div>
 {% endblock %}

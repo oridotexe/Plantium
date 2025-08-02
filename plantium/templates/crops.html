@@ -2,46 +2,48 @@
 {% load custom_filters %}
 {% block content %}
 
-    <h3> Cultivos en curso </h3>
-    {% if not actives %} <p> No hay cultivos en curso. </p> {% endif %}
-    {% for crop in actives %}
-        <ul>
-            <li>
-                {{crop.name}} - Estado: {{crop.status}} - Fecha: {{crop.init_date}} <br>
-                Planta: {{crop.plant.name}} - Variedad: {{crop.plant.variety}} <br>
-                Ultimo riego:  {% if crop.last_watering is none %} No se ha regado {% else %} {{crop.last_watering}} {% endif %} <br>
+    <div class="col-lg-10">
+        <h3> Cultivos en curso </h3>
+        {% if not actives %} <p> No hay cultivos en curso. </p> {% endif %}
+        {% for crop in actives %}
+            <ul>
+                <li>
+                    {{crop.name}} - Estado: {{crop.status}} - Fecha: {{crop.init_date}} <br>
+                    Planta: {{crop.plant.name}} - Variedad: {{crop.plant.variety}} <br>
+                    Ultimo riego:  {% if crop.last_watering is none %} No se ha regado {% else %} {{crop.last_watering}} {% endif %} <br>
 
-                {% if crop.days_remaining > 0 %}
-                    La debes regar en: {{crop.days_remaining}} dias<br>
-                {% elif crop.days_remaining < 0 %}
-                    El riego está atrasado por: {{crop.days_remaining|abs_val}} dias<br>
-                {% elif crop.days == 1 %}
-                    La debes regar mañana.<br>
-                {% else %}
-                    La debes regar hoy <br>
-                {% endif %}
-                
-                <a href={% url "delete_crop" crop.id %}>Eliminar</a>
-                <a href={% url "update_crop" crop.id %}>Actualizar</a>
-                <a href={% url "culminate_crop" crop.id %}>Marcar como terminado</a>
-            </li>
-        </ul>
-    {% endfor %}
+                    {% if crop.days_remaining > 0 %}
+                        La debes regar en: {{crop.days_remaining}} dias<br>
+                    {% elif crop.days_remaining < 0 %}
+                        El riego está atrasado por: {{crop.days_remaining|abs_val}} dias<br>
+                    {% elif crop.days == 1 %}
+                        La debes regar mañana.<br>
+                    {% else %}
+                        La debes regar hoy <br>
+                    {% endif %}
+                    
+                    <a href={% url "delete_crop" crop.id %}>Eliminar</a>
+                    <a href={% url "update_crop" crop.id %}>Actualizar</a>
+                    <a href={% url "culminate_crop" crop.id %}>Marcar como terminado</a>
+                </li>
+            </ul>
+        {% endfor %}
 
-    <h3> Cultivos terminados </h3>
-    {% if not finished %} <p> No hay cultivos terminados. </p> {% endif %}
-    {% for crop in finished %}
-        <ul>
-            <li>
-                {{crop.name}} - Estado: {{crop.status}} - Fecha: {{crop.init_date}} <br>
-                Ultimo riego:  {% if crop.last_watering == none %} No se ha regado {% else %} {{crop.last_watering}} {% endif %}
-                <br><a href={% url "delete_crop" crop.id %}>Eliminar</a>
-            </li>
-        </ul>
-    {% endfor %}
+        <h3> Cultivos terminados </h3>
+        {% if not finished %} <p> No hay cultivos terminados. </p> {% endif %}
+        {% for crop in finished %}
+            <ul>
+                <li>
+                    {{crop.name}} - Estado: {{crop.status}} - Fecha: {{crop.init_date}} <br>
+                    Ultimo riego:  {% if crop.last_watering == none %} No se ha regado {% else %} {{crop.last_watering}} {% endif %}
+                    <br><a href={% url "delete_crop" crop.id %}>Eliminar</a>
+                </li>
+            </ul>
+        {% endfor %}
 
-    <p>Para recuperar tus cultivos eliminados presiona 
-        <a href={% url "deleted_crops" %}>aquí.</a>
-    </p>
+        <p>Para recuperar tus cultivos eliminados presiona 
+            <a href={% url "deleted_crops" %}>aquí.</a>
+        </p>
+    </div>
 
 {% endblock %}
