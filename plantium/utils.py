@@ -15,7 +15,7 @@ def request_api(latitude: str, longitude: str):
     }
 
     base_url = "https://api.openweathermap.org/data/2.5/weather"
-    API_KEY = "58ce1d5bac4111d74e8bec09cf5e393a" # Esta es mi clave personal, hay que cambiarla jashja
+    API_KEY = "" # Esta es mi clave personal, hay que cambiarla jashja
 
     params = {
         'lat': latitude,
