@@ -17,6 +17,9 @@ class CreateCropForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		self.user = kwargs.pop('user', None)
 		super().__init__(*args, **kwargs)
+		if self.instance.pk:
+			self.fields['plant'].disabled = True 
+			self.fields['init_date'].disabled = True 
 
 	class Meta:
 		model = Crop
@@ -37,8 +40,11 @@ class CreateCropForm(ModelForm):
 		last_watering = cleaned_data.get('last_watering')
 
 		if name and self.user:
-			exists = Crop.objects.filter(name=name, user=self.user).exists()
-			if exists:
+			repeat = Crop.objects.filter(name=name, user=self.user)
+			# Para verificar si el nombre ya existe en esta instancia, en update
+			if self.instance.pk:
+				repeat = repeat.exclude(pk=self.instance.pk)
+			if repeat.exists():
 				raise forms.ValidationError("Ya tienes un cultivo con ese nombre.")
 			
 		if init_date > date.today():

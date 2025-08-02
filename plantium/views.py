@@ -5,13 +5,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login
 from .forms import CreateCropForm, CustomUserCreationForm
 from .models import Crop
+from .utils import calculate_next_watering
 
 # Create your views here.
 
 def home(request):
     return render(request, 'home.html')
 
-@login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
 
@@ -38,12 +38,17 @@ def exit(request):
     logout(request)
     return redirect('login')
 
+
 @login_required
 def my_crops(request):
-    crops = Crop.objects.filter(user=request.user, status__in=[0,1]).order_by('-init_date')
+    crops = Crop.objects.filter(user=request.user, status__in=[0,1]).select_related('plant').order_by('-init_date')
     
     actives = [crop for crop in crops if crop.status == 0]
     finished = [crop for crop in crops if crop.status == 1]
+
+    for crop in actives:
+        crop.days_remaining = calculate_next_watering(crop.last_watering, crop.plant.watering_freq)
+
     return render(request, 'crops.html', {'actives': actives, 'finished': finished})
 
 @login_required
@@ -66,3 +71,36 @@ def delete_crop(request, id_crop):
     crop.status = 2
     crop.save()
     return redirect('my_crops')
+
+@login_required
+def culminate_crop(request, id_crop):
+    crop = get_object_or_404(Crop, pk=id_crop, user=request.user)
+    crop.status = 1
+    crop.save()
+    return redirect('my_crops')
+
+@login_required
+def recover_crop(request, id_crop):
+    crop = get_object_or_404(Crop, pk=id_crop, user=request.user)
+    crop.status = 0
+    crop.save()
+    return redirect('my_crops')
+
+@login_required
+def deleted_crops(request):
+    crops = Crop.objects.filter(user=request.user, status__in=[2]).select_related('plant').order_by('-init_date')
+    return render(request, 'recover_crop.html', {'crops': crops})
+
+@login_required
+def update_crop(request, id_crop):
+    crop = get_object_or_404(Crop, pk=id_crop, user=request.user)
+
+    if request.method == 'GET':
+        form = CreateCropForm(instance=crop)
+    else:
+        form = CreateCropForm(request.POST, user=request.user, instance=crop)
+        if form.is_valid():
+            form.save()
+            return redirect('my_crops')
+        
+    return render(request, 'update_crop.html', {'form': form, 'crop': crop})
