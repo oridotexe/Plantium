@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login
 from .forms import CreateCropForm, CustomUserCreationForm
 from .models import Crop, Plant
-from .utils import calculate_next_watering, request_api
+from .utils import *
 
 # Create your views here.
 
@@ -33,8 +33,13 @@ def exit(request):
 
 @login_required
 def dashboard(request):
-    response = request_api('7.76694000', '-72.22500000')
-    print(response)
+    response = request_api('7.76694000', '-72.22500000', is_current=False)
+    cleaned_data = None if response is None else process_weather_data(response)
+    avg = average_weather(cleaned_data)
+
+    print("\n", cleaned_data, "\n")
+    print("\n", "Temperatura Promedio: ", avg.get('avg_temp'), ", Humedad Promedio: ",  avg.get('avg_hum'), "\n")
+    
     return render(request, 'dashboard.html')
 
 @login_required
