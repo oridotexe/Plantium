@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv
-import os
 
+from dotenv import load_dotenv
+# Api del clima
 load_dotenv()  
+OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -139,6 +140,3 @@ SESSION_EXPIRE_AT_BROWSE_CLOSE = True
 # Variables de redireccion y logout
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'
-
-# Api del clima
-OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
