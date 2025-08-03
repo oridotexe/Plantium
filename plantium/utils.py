@@ -1,7 +1,8 @@
-import numpy as np
-from datetime import date, timedelta
+from django.conf import settings
 from .models import *
+from datetime import date, timedelta
 import requests
+import numpy as np
 
 def calculate_next_watering(last_watering: date , watering_freq: int):
     date_today = date.today()
@@ -18,12 +19,11 @@ def request_api(latitude: str, longitude: str, is_current: bool):
     }
 
     base_url = "https://api.openweathermap.org/data/2.5/" + extension
-    API_KEY = "" # Esta es mi clave personal, hay que cambiarla jashja
 
     params = {
         'lat': latitude,
         'lon': longitude,
-        'appid': API_KEY,
+        'appid': settings.OPENWEATHER_API_KEY,
         'units': 'metric',  # Para temperatura en Celsius
         'lang': 'es'  # Opcional: datos en español
     }
