@@ -1,0 +1,152 @@
+[
+  {
+    "model": "plantium.plant",
+    "fields": {
+      "name": "Maíz",
+      "variety": "Amarillo",
+      "humidity_min": 60.0,
+      "humidity_max": 75.0,
+      "temp_min": 18.0,
+      "temp_max": 32.0,
+      "img_url": "https://ejemplo.com/maiz-amarillo.jpg",
+      "watering_freq": 3,
+      "harvest_duration": 90,
+      "description": "Maíz amarillo, ideal para consumo fresco o procesamiento. Requiere sol abundante."
+    }
+  },
+  {
+    "model": "plantium.plant",
+    "fields": {
+      "name": "Tomate",
+      "variety": "Cherry",
+      "humidity_min": 65.0,
+      "humidity_max": 85.0,
+      "temp_min": 16.0,
+      "temp_max": 30.0,
+      "img_url": "https://ejemplo.com/tomate-cherry.jpg",
+      "watering_freq": 2,
+      "harvest_duration": 70,
+      "description": "Tomates pequeños y dulces, perfectos para ensaladas y snacks."
+    }
+  },
+  {
+    "model": "plantium.plant",
+    "fields": {
+      "name": "Caraota",
+      "variety": "Negra",
+      "humidity_min": 50.0,
+      "humidity_max": 70.0,
+      "temp_min": 20.0,
+      "temp_max": 28.0,
+      "img_url": "https://ejemplo.com/caraota-negra.jpg",
+      "watering_freq": 4,
+      "harvest_duration": 80,
+      "description": "Leguminosa rica en proteínas. Mejora el suelo al fijar nitrógeno."
+    }
+  },
+  {
+    "model": "plantium.plant",
+    "fields": {
+      "name": "Pimentón",
+      "variety": "Rojo",
+      "humidity_min": 60.0,
+      "humidity_max": 80.0,
+      "temp_min": 18.0,
+      "temp_max": 30.0,
+      "img_url": "https://ejemplo.com/pimenton-rojo.jpg",
+      "watering_freq": 3,
+      "harvest_duration": 90,
+      "description": "Pimentón rojo dulce, usado en guisos y ensaladas."
+    }
+  },
+  {
+    "model": "plantium.plant",
+    "fields": {
+      "name": "Lechuga",
+      "variety": "Romana",
+      "humidity_min": 70.0,
+      "humidity_max": 85.0,
+      "temp_min": 10.0,
+      "temp_max": 24.0,
+      "img_url": "https://ejemplo.com/lechuga-romana.jpg",
+      "watering_freq": 1,
+      "harvest_duration": 50,
+      "description": "Hojas alargadas y crujientes. Ideal para climas templados."
+    }
+  },
+  {
+    "model": "plantium.plant",
+    "fields": {
+      "name": "Zanahoria",
+      "variety": "Nantes",
+      "humidity_min": 65.0,
+      "humidity_max": 75.0,
+      "temp_min": 15.0,
+      "temp_max": 25.0,
+      "img_url": "https://ejemplo.com/zanahoria-nantes.jpg",
+      "watering_freq": 3,
+      "harvest_duration": 75,
+      "description": "Zanahoria dulce y jugosa. Crece mejor en suelos sueltos."
+    }
+  },
+  {
+    "model": "plantium.plant",
+    "fields": {
+      "name": "Cebolla",
+      "variety": "Amarilla",
+      "humidity_min": 60.0,
+      "humidity_max": 70.0,
+      "temp_min": 12.0,
+      "temp_max": 28.0,
+      "img_url": "https://ejemplo.com/cebolla-amarilla.jpg",
+      "watering_freq": 5,
+      "harvest_duration": 120,
+      "description": "Cebolla de sabor fuerte y buen almacenamiento."
+    }
+  },
+  {
+    "model": "plantium.plant",
+    "fields": {
+      "name": "Papa",
+      "variety": "Blanca",
+      "humidity_min": 70.0,
+      "humidity_max": 80.0,
+      "temp_min": 15.0,
+      "temp_max": 25.0,
+      "img_url": "https://ejemplo.com/papa-blanca.jpg",
+      "watering_freq": 4,
+      "harvest_duration": 100,
+      "description": "Tubérculo versátil en la cocina. Necesita suelo suelto."
+    }
+  },
+  {
+    "model": "plantium.plant",
+    "fields": {
+      "name": "Calabacín",
+      "variety": "Verde",
+      "humidity_min": 65.0,
+      "humidity_max": 75.0,
+      "temp_min": 18.0,
+      "temp_max": 30.0,
+      "img_url": "https://ejemplo.com/calabacin-verde.jpg",
+      "watering_freq": 3,
+      "harvest_duration": 60,
+      "description": "Crece rápido y produce abundantemente."
+    }
+  },
+  {
+    "model": "plantium.plant",
+    "fields": {
+      "name": "Fresa",
+      "variety": "Albión",
+      "humidity_min": 70.0,
+      "humidity_max": 85.0,
+      "temp_min": 15.0,
+      "temp_max": 25.0,
+      "img_url": "https://ejemplo.com/fresa-albion.jpg",
+      "watering_freq": 2,
+      "harvest_duration": 90,
+      "description": "Fresas dulces y grandes. Requieren suelo ácido."
+    }
+  }
+]
