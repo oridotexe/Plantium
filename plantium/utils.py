@@ -111,6 +111,7 @@ def generate_recomendations(temps, hums):
         # Puntaje total (ponderado)
         total_score = (TEMP_WEIGHT * temp_score) + (HUM_WEIGHT * hum_score)
         if total_score >= UMBRAL_ACCEPTATION:
-            recommended_plants.append(obj_plant)
+            recommended_plants.append({'plant':obj_plant, 'total_score': total_score})
     
-    return recommended_plants
+    recommended_plants_ordered = sorted(recommended_plants, key=lambda x: x['total_score'], reverse=True)
+    return [item['plant'] for item in recommended_plants_ordered]
