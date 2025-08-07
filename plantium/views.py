@@ -38,9 +38,9 @@ def dashboard(request):
     
     data_list = create_data_list(cleaned_data)
     print("\n", cleaned_data, "\n")
-    # print("\n", "Temperatura Promedio: ", data_list.get('avg_temp'), ", Humedad Promedio: ",  data_list.get('avg_hum'), "\n")
-    recommended = generate_recomendations(data_list.get('temps'), data_list.get('hums'))
-    print("\n", recommended, "\n")
+    if data_list is not None:
+        recommended = generate_recomendations(data_list.get('temps'), data_list.get('hums'))
+        print("\n", recommended, "\n")
     
     return render(request, 'dashboard.html')
 

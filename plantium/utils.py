@@ -61,6 +61,10 @@ def process_weather_data(data: dict):
     return cleaned_data
 
 def create_data_list(cleaned_data: dict):
+    if cleaned_data is None:
+        print("No contiene datos el diccionario del clima.")
+        return None
+
     temps = [
         i['temp'] 
         for i in cleaned_data.values() 
@@ -76,38 +80,19 @@ def create_data_list(cleaned_data: dict):
     return { 'temps': temps, 'hums': hums }
 
 def generate_recomendations(temps, hums):
+    MARGIN = 1.10
+    UMBRAL_ACCEPTATION = 60
+    TEMP_WEIGHT = 0.8
+    HUM_WEIGHT = 0.2
+
     recommended_plants = []
     all_plants = Plant.objects.all()
-    MARGIN = 1.10
 
-    # Calcular percentiles (ej: 10% y 90% para evitar extremos)
-    temp_p10 = np.percentile(temps, 10)  # Temperatura mínima esperada
-    temp_p90 = np.percentile(temps, 90)  # Temperatura máxima esperada
-
-
-    hum_p10 = np.percentile(hums, 10)
-    hum_p90 = np.percentile(hums, 90)
-
-    print("\nTemp_p10", temp_p10, "\n")
-    print("Temp_p90", temp_p90, "\n")
-    print("H10", hum_p10, "\n")
-    print("H90", hum_p90, "\n")
+    percentiles = [20, 80]
+    temp_p10, temp_p90 = np.percentile(temps, percentiles)
+    hum_p10, hum_p90 = np.percentile(hums, percentiles)
     
     for obj_plant in all_plants:
-        # 1. Verificar rangos ideales con percentiles
-        temp_ok = (MARGIN * obj_plant.temp_min <= temp_p10) and (temp_p90 <= obj_plant.temp_max * MARGIN)
-        hum_ok = (MARGIN * obj_plant.humidity_min <= hum_p10) and (hum_p90 <= obj_plant.humidity_max * MARGIN)
-        
-        # 2. Verificar umbrales críticos
-        # no_hielo = temp_min >= obj_plant.temp_critica_min
-        # no_ola_calor = temp_max <= obj_plant.temp_critica_max
-        
-        # 3. Validar estabilidad climática (solo para obj_plants sensibles)
-        # estable = (temp_std <= 3.0) if obj_plant.sensible else True
-        
-        # if temp_ok and hum_ok: # and no_hielo and no_ola_calor and estable
-        #     recommended_plants.append(obj_plant)
-
         if (temp_p10 >= obj_plant.temp_min) and (temp_p90 <= obj_plant.temp_max):
             temp_score = 100
         elif (temp_p10 >= obj_plant.temp_min * MARGIN) and (temp_p90 <= obj_plant.temp_max * MARGIN):
@@ -116,20 +101,16 @@ def generate_recomendations(temps, hums):
             temp_score = 0
 
         # 2. Puntuar humedad (0-100)
-        if (hum_p10 >= obj_plant.humidity_max) and (hum_p90 <= obj_plant.humidity_max):
+        if (hum_p10 >= obj_plant.humidity_min) and (hum_p90 <= obj_plant.humidity_max):
             hum_score = 100
-        elif (hum_p10 >= obj_plant.humidity_max * MARGIN) and (hum_p90 <= obj_plant.humidity_max * MARGIN):  # Tolerancia del 15%
+        elif (hum_p10 >= obj_plant.humidity_min * MARGIN) and (hum_p90 <= obj_plant.humidity_max * MARGIN): 
             hum_score = 50
         else:
             hum_score = 0
 
-        # 3. Ajustar por lluvia próxima
-        # rain_boost = 20 if rain_next_24h > 10 else 0  # Bonus si llueve >10mm
-
         # Puntaje total (ponderado)
-        total_score = 0.8 * temp_score + 0.2 * hum_score # + 0.1  * rain_boost
-        print("TOTAL SCORE: ", total_score)
-        if total_score >= 60:
+        total_score = (TEMP_WEIGHT * temp_score) + (HUM_WEIGHT * hum_score)
+        if total_score >= UMBRAL_ACCEPTATION:
             recommended_plants.append(obj_plant)
     
     return recommended_plants
