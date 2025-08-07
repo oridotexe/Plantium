@@ -36,10 +36,10 @@ def dashboard(request):
     response = request_api('7.76694000', '-72.22500000', is_current=False)
     cleaned_data = None if response is None else process_weather_data(response)
     
-    avg = average_weather(cleaned_data)
+    data_list = create_data_list(cleaned_data)
     print("\n", cleaned_data, "\n")
-    print("\n", "Temperatura Promedio: ", avg.get('avg_temp'), ", Humedad Promedio: ",  avg.get('avg_hum'), "\n")
-    recommended = generate_recomendations(cleaned_data)
+    # print("\n", "Temperatura Promedio: ", data_list.get('avg_temp'), ", Humedad Promedio: ",  data_list.get('avg_hum'), "\n")
+    recommended = generate_recomendations(data_list.get('temps'), data_list.get('hums'))
     print("\n", recommended, "\n")
     
     return render(request, 'dashboard.html')

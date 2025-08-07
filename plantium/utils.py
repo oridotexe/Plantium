@@ -60,7 +60,7 @@ def process_weather_data(data: dict):
 
     return cleaned_data
 
-def average_weather(cleaned_data: dict):
+def create_data_list(cleaned_data: dict):
     temps = [
         i['temp'] 
         for i in cleaned_data.values() 
@@ -73,23 +73,9 @@ def average_weather(cleaned_data: dict):
         if isinstance(i.get('hum'), (int, float))
     ]
 
-    avg_temp = sum(temps) / len(temps) if temps else None
-    avg_hum = sum(hums) / len(hums) if hums else None
+    return { 'temps': temps, 'hums': hums }
 
-    return { 'avg_temp': avg_temp, 'avg_hum': avg_hum }
-
-def generate_recomendations(cleaned_data):
-    temps = [
-        i['temp'] 
-        for i in cleaned_data.values() 
-        if isinstance(i.get('temp'), (int, float))  # Solo números
-    ]
-    
-    hums = [
-        i['hum'] 
-        for i in cleaned_data.values() 
-        if isinstance(i.get('hum'), (int, float))
-    ]
+def generate_recomendations(temps, hums):
     recommended_plants = []
     all_plants = Plant.objects.all()
     MARGIN = 1.10
