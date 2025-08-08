@@ -40,11 +40,6 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 
-6. Cargar datos de plantas:
-```Bash
-python manage.py loaddata plants_data.json
-```
-
 7. Corre el servidor:
 ```Bash
 python manage.py runserver

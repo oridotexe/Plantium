@@ -1,6 +1,7 @@
 [
   {
     "model": "plantium.plant",
+    "pk": 1,
     "fields": {
       "name": "Maíz",
       "variety": "Amarillo",
@@ -16,6 +17,7 @@
   },
   {
     "model": "plantium.plant",
+    "pk": 2,
     "fields": {
       "name": "Tomate",
       "variety": "Cherry",
@@ -31,6 +33,7 @@
   },
   {
     "model": "plantium.plant",
+    "pk": 3,
     "fields": {
       "name": "Caraota",
       "variety": "Negra",
@@ -46,6 +49,7 @@
   },
   {
     "model": "plantium.plant",
+    "pk": 4,
     "fields": {
       "name": "Pimentón",
       "variety": "Rojo",
@@ -61,6 +65,7 @@
   },
   {
     "model": "plantium.plant",
+    "pk": 5,
     "fields": {
       "name": "Lechuga",
       "variety": "Romana",
@@ -76,6 +81,7 @@
   },
   {
     "model": "plantium.plant",
+    "pk": 6,
     "fields": {
       "name": "Zanahoria",
       "variety": "Nantes",
@@ -91,6 +97,7 @@
   },
   {
     "model": "plantium.plant",
+    "pk": 7,
     "fields": {
       "name": "Cebolla",
       "variety": "Amarilla",
@@ -106,6 +113,7 @@
   },
   {
     "model": "plantium.plant",
+    "pk": 8,
     "fields": {
       "name": "Papa",
       "variety": "Blanca",
@@ -121,6 +129,7 @@
   },
   {
     "model": "plantium.plant",
+    "pk": 9,
     "fields": {
       "name": "Calabacín",
       "variety": "Verde",
@@ -136,6 +145,7 @@
   },
   {
     "model": "plantium.plant",
+    "pk": 10,
     "fields": {
       "name": "Fresa",
       "variety": "Albión",
