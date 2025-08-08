@@ -49,7 +49,10 @@ class CreateCropForm(ModelForm):
 			
 		if init_date > date.today():
 			raise forms.ValidationError("La fecha de siembra tiene que ser de hoy o anterior a hoy.")
-			
+		
+		if last_watering is not None and last_watering > date.today():
+			raise forms.ValidationError("La fecha de riego no puede ser superior al día de hoy.")
+		
 		if last_watering is not None and last_watering < init_date:
 			raise forms.ValidationError("La fecha de riego no puede ser anterior a la de inicio.")
 		
