@@ -1,9 +1,10 @@
-{% extends 'layouts/base.html' %}
-{% block content %}
-    <h1>Home</h1>
-    {% if request.user.is_authenticated %}
-    <p>Welcome to the home page! {{ user.username | upper }}</p>
-    {% else %}
-    <p>Welcome to the home page! Please log in or sign up.</p>
-    {% endif %}
+{% extends 'layouts/base.html' %} {% block content %}
+<div class="col-lg-10">
+  <h1>Home</h1>
+  {% if request.user.is_authenticated %}
+  <p>Welcome to the home page! {{ user.username | upper }}</p>
+  {% else %}
+  <p>Welcome to the home page! Please log in or sign up.</p>
+  {% endif %}
+</div>
 {% endblock %}
