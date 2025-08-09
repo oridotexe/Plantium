@@ -29,10 +29,10 @@
         <!-- Sidebar -->
         <!-- Botón para colapsar el sidebar (puede ir en tu navbar superior) -->
         <nav
-          class="navbar navbar-expand-lg sidebar px-3 col-lg-2 flex-lg-column align-items-start p"
+          class="navbar navbar-expand-lg sidebar px-3 col-lg-2 flex-lg-column align-items-start"
         >
           <div class="container-fluid flex-lg-column align-items-start">
-            <a class="navbar-brand text-white mb-4" href="/">PLANTIUM</a>
+            <a class="navbar-brand text-white mb-4" href="#">PLANTIUM</a>
             <button
               class="navbar-toggler mb-3"
               type="button"
@@ -52,10 +52,10 @@
                 <li class="nav-item mb-2 grow">
                   <a
                     class="nav-link active text-white d-flex align-items-center"
-                    href="/dashboard"
+                    href="{% url 'dashboard' %}"
                   >
                     <img
-                      src="{% static 'img/dashboard.png' %}"
+                      src="{% static 'images/dashboard.png' %}"
                       width="25"
                       height="25"
                       class="me-2"
@@ -67,10 +67,10 @@
                 <li class="nav-item mb-2 grow">
                   <a
                     class="nav-link text-white d-flex align-items-center"
-                    href="#"
+                    href="{% url 'my_crops' %}"
                   >
                     <img
-                      src="{% static 'img/tomato.png' %}"
+                      src="{% static 'images/tomato.png' %}"
                       width="30"
                       height="30"
                       class="me-2"
@@ -82,10 +82,10 @@
                 <li class="nav-item mb-2 grow">
                   <a
                     class="nav-link text-white d-flex align-items-center"
-                    href="#"
+                    href="{% url 'plants' %}"
                   >
                     <img
-                      src="{% static 'img/plant.png' %}"
+                      src="{% static 'images/plant.png' %}"
                       width="30"
                       height="30"
                       class="me-2"
@@ -100,7 +100,7 @@
                     href="#"
                   >
                     <img
-                      src="{% static 'img/settings.png' %}"
+                      src="{% static 'images/settings.png' %}"
                       width="30"
                       height="30"
                       class="me-2"
@@ -109,10 +109,26 @@
                     <span>Ajustes</span>
                   </a>
                 </li>
+                <li class="nav-item mb-2 grow">
+                  <a
+                    class="nav-link text-white d-flex align-items-center"
+                    href="{% url 'exit' %}"
+                  >
+                    <img
+                      src="{% static 'images/settings.png' %}"
+                      width="30"
+                      height="30"
+                      class="me-2"
+                      alt="Ajustes Icon"
+                    />
+                    <span>Salir</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
         </nav>
+
         {% block content %} {% endblock %}
       </div>
     </div>

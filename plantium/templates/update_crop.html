@@ -2,12 +2,12 @@
 {% block content %}
 {% load crispy_forms_tags %}
     <div class="col-lg-10">
-        <h1>Crear Cultivo</h1><br>
+        <h1>Actualizar Cultivo</h1><br>
 
-        <form action="{% url 'create_crop' %}" method="POST">
+        <form action="{% url 'update_crop' crop.id %}" method="POST">
             {% csrf_token %}
             {{ form|crispy }}
-            <button type="submit" class="btn btn-success">Crear</button>
+            <button type="submit" class="btn btn-success">Actualizar</button>
         </form>
     </div>
 {% endblock %}

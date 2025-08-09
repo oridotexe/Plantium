@@ -1,11 +1,13 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-    <h1>Plantas</h1>
-    <p>Matas plantas wi</p>
-    <p>Matas plantas wi</p>
-    <p>Matas plantas wi</p>
-    <p>Matas plantas wi</p>
-    <p>Matas plantas wi</p>
-    <p>Matas plantas wi</p>
-    <p>Matas plantas wi</p>
+    <div class="col-lg-10">
+        <h1>Plantas</h1>
+        {% for plant in plants %}
+            <ul>
+                <li>
+                    {{plant.name}} - Variedad: {{plant.variety}}<br>
+                </li>
+            </ul>
+        {% endfor %}
+    </div>
 {% endblock %}
