@@ -1,19 +1,42 @@
 {% extends "layouts/base.html" %}
 {% block content %}
 
-    <div class="col-lg-10">
-        <h3> Cultivos Eliminados</h3>
-        {% if not crops %} <p> No hay cultivos eliminados. </p> {% endif %}
-        {% for crop in crops %}
-            <ul>
-                <li>
-                    {{crop.name}} - Estado: {{crop.status}} - Fecha: {{crop.init_date}} <br>
-                    Planta: {{crop.plant.name}} - Variedad: {{crop.plant.variety}} <br>
-                    Ultimo riego:  {% if crop.last_watering is none %} No se ha regado {% else %} {{crop.last_watering}} {% endif %} <br>
-                    <a href={% url "recover_crop" crop.id %}>Recuperar cultivo</a>
-                </li>
-            </ul>
-        {% endfor %}
+<div class="col-lg-10 ml-sm-auto px-4">
+  <h3 class="mb-3 mt-3 text-center">Cultivos Eliminados</h3>
+
+  {% if not crops %}
+    <div class="d-flex justify-content-center">
+      <div class="alert alert-info text-center" style="width: 90%">No hay cultivos eliminados.</div>
     </div>
+  {% endif %}
+
+  <div>
+    {% for crop in crops %}
+      <div class="d-flex justify-content-center">
+        <div class="card shadow-sm border-0 rounded-4 h-100 bg-light" style="width: 90%">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{ crop.name }}</h5>
+            <p class="text-muted small mb-1">Estado: {{ crop.status }}</p>
+            <p class="text-muted small mb-1">Fecha de inicio: {{ crop.init_date }}</p>
+            <hr>
+            <p class="mb-1"><strong>Planta:</strong> {{ crop.plant.name }}</p>
+            <p class="mb-1"><strong>Variedad:</strong> {{ crop.plant.variety }}</p>
+            <p class="mb-3">
+              <strong>Último riego:</strong>
+              {% if crop.last_watering is none %}
+                <span class="text-danger">No se ha regado</span>
+              {% else %}
+                {{ crop.last_watering }}
+              {% endif %}
+            </p>
+            <a href="{% url 'recover_crop' crop.id %}" class="btn btn-sm btn-outline-primary">
+              Recuperar cultivo
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
 
 {% endblock %}

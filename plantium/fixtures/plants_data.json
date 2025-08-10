@@ -9,7 +9,7 @@
       "humidity_max": 75.0,
       "temp_min": 18.0,
       "temp_max": 32.0,
-      "img_url": "https://ejemplo.com/maiz-amarillo.jpg",
+      "img_url": "images/plants/corn.webp",
       "watering_freq": 3,
       "harvest_duration": 90,
       "description": "Maíz amarillo, ideal para consumo fresco o procesamiento. Requiere sol abundante."
@@ -25,7 +25,7 @@
       "humidity_max": 85.0,
       "temp_min": 16.0,
       "temp_max": 30.0,
-      "img_url": "https://ejemplo.com/tomate-cherry.jpg",
+      "img_url": "images/plants/tomato.png",
       "watering_freq": 2,
       "harvest_duration": 70,
       "description": "Tomates pequeños y dulces, perfectos para ensaladas y snacks."
@@ -35,16 +35,16 @@
     "model": "plantium.plant",
     "pk": 3,
     "fields": {
-      "name": "Caraota",
-      "variety": "Negra",
-      "humidity_min": 50.0,
-      "humidity_max": 70.0,
-      "temp_min": 20.0,
-      "temp_max": 28.0,
-      "img_url": "https://ejemplo.com/caraota-negra.jpg",
-      "watering_freq": 4,
-      "harvest_duration": 80,
-      "description": "Leguminosa rica en proteínas. Mejora el suelo al fijar nitrógeno."
+      "name": "Fresa",
+      "variety": "Albión",
+      "humidity_min": 70.0,
+      "humidity_max": 85.0,
+      "temp_min": 15.0,
+      "temp_max": 25.0,
+      "img_url": "images/plants/fresa.webp",
+      "watering_freq": 2,
+      "harvest_duration": 90,
+      "description": "Fresas dulces y grandes. Requieren suelo ácido."
     }
   },
   {
@@ -57,7 +57,7 @@
       "humidity_max": 80.0,
       "temp_min": 18.0,
       "temp_max": 30.0,
-      "img_url": "https://ejemplo.com/pimenton-rojo.jpg",
+      "img_url": "images/plants/pimenton.webp",
       "watering_freq": 3,
       "harvest_duration": 90,
       "description": "Pimentón rojo dulce, usado en guisos y ensaladas."
@@ -73,7 +73,7 @@
       "humidity_max": 85.0,
       "temp_min": 10.0,
       "temp_max": 24.0,
-      "img_url": "https://ejemplo.com/lechuga-romana.jpg",
+      "img_url": "images/plants/lechuga.webp",
       "watering_freq": 1,
       "harvest_duration": 50,
       "description": "Hojas alargadas y crujientes. Ideal para climas templados."
@@ -89,7 +89,7 @@
       "humidity_max": 75.0,
       "temp_min": 15.0,
       "temp_max": 25.0,
-      "img_url": "https://ejemplo.com/zanahoria-nantes.jpg",
+      "img_url": "images/plants/zanahoria.webp",
       "watering_freq": 3,
       "harvest_duration": 75,
       "description": "Zanahoria dulce y jugosa. Crece mejor en suelos sueltos."
@@ -105,7 +105,7 @@
       "humidity_max": 70.0,
       "temp_min": 12.0,
       "temp_max": 28.0,
-      "img_url": "https://ejemplo.com/cebolla-amarilla.jpg",
+      "img_url": "images/plants/cebolla.webp",
       "watering_freq": 5,
       "harvest_duration": 120,
       "description": "Cebolla de sabor fuerte y buen almacenamiento."
@@ -121,7 +121,7 @@
       "humidity_max": 80.0,
       "temp_min": 15.0,
       "temp_max": 25.0,
-      "img_url": "https://ejemplo.com/papa-blanca.jpg",
+      "img_url": "images/plants/papa.webp",
       "watering_freq": 4,
       "harvest_duration": 100,
       "description": "Tubérculo versátil en la cocina. Necesita suelo suelto."
@@ -137,7 +137,7 @@
       "humidity_max": 75.0,
       "temp_min": 18.0,
       "temp_max": 30.0,
-      "img_url": "https://ejemplo.com/calabacin-verde.jpg",
+      "img_url": "images/plants/calabacin.webp",
       "watering_freq": 3,
       "harvest_duration": 60,
       "description": "Crece rápido y produce abundantemente."
@@ -147,16 +147,16 @@
     "model": "plantium.plant",
     "pk": 10,
     "fields": {
-      "name": "Fresa",
-      "variety": "Albión",
-      "humidity_min": 70.0,
-      "humidity_max": 85.0,
-      "temp_min": 15.0,
-      "temp_max": 25.0,
-      "img_url": "https://ejemplo.com/fresa-albion.jpg",
-      "watering_freq": 2,
-      "harvest_duration": 90,
-      "description": "Fresas dulces y grandes. Requieren suelo ácido."
+      "name": "Caraota",
+      "variety": "Negra",
+      "humidity_min": 50.0,
+      "humidity_max": 70.0,
+      "temp_min": 20.0,
+      "temp_max": 28.0,
+      "img_url": "images/plants/caraota.webp",
+      "watering_freq": 4,
+      "harvest_duration": 80,
+      "description": "Leguminosa rica en proteínas. Mejora el suelo al fijar nitrógeno."
     }
   }
 ]

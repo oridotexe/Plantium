@@ -4,6 +4,7 @@ from datetime import date, timedelta
 import requests
 import numpy as np
 
+
 def calculate_next_watering(last_watering: date , watering_freq: int):
     date_today = date.today()
     prox_watering_date = last_watering + timedelta(days=watering_freq)

@@ -37,12 +37,10 @@ def dashboard(request):
     cleaned_data = None if response is None else process_weather_data(response)
     
     data_list = create_data_list(cleaned_data)
-    print("\n", cleaned_data, "\n")
     if data_list is not None:
         recommended = generate_recomendations(data_list.get('temps'), data_list.get('hums'))
-        print("\n", recommended, "\n")
     
-    return render(request, 'dashboard.html')
+    return render(request, 'dashboard.html',{'measurements':cleaned_data})
 
 @login_required
 def plants(request):
@@ -52,7 +50,6 @@ def plants(request):
 @login_required
 def my_crops(request):
     crops = Crop.objects.filter(user=request.user, status__in=[0,1]).select_related('plant').order_by('-init_date')
-    
     actives = [crop for crop in crops if crop.status == 0]
     finished = [crop for crop in crops if crop.status == 1]
 

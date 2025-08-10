@@ -21,6 +21,8 @@ html,
 
 @media (min-width: 992px) {
   .sidebar {
+    position: sticky;
+    top: 0;
     height: 100vh;
   }
 }
@@ -46,7 +48,7 @@ html,
     transition: all 0.2s ease-in-out;
 
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
   }
 }

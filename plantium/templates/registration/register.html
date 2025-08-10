@@ -1,7 +1,7 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
-
+<div class="col-lg-10 ml-sm-auto px-4">
     <h1>Registrarse</h1><br>
 
     <form action="" method="POST">
@@ -9,5 +9,7 @@
         {{ form | crispy }}
         <button type="submit">Registrarse</button>
     </form>
+</div>
+
 
 {% endblock %}
