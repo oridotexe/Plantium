@@ -6,12 +6,14 @@ from django.contrib.auth import logout, authenticate, login
 from .forms import CreateCropForm, CustomUserCreationForm
 from .models import Crop, Plant
 from .utils import *
+from django.contrib import messages
 
 # Create your views here.
 
 def home(request):
     return render(request, 'home.html')
 
+"""
 def register(request):
     data = {
         'form': CustomUserCreationForm()
@@ -26,6 +28,20 @@ def register(request):
             login(request, user)
             return redirect('dashboard') # P0ll1t0893
     return render(request, 'registration/register.html', data)
+"""
+def register(request):
+    if request.method == 'POST':
+        user_creation_form = CustomUserCreationForm(data=request.POST)
+        if user_creation_form.is_valid():
+            user = user_creation_form.save()
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            messages.error(request, "Por favor corrige los errores marcados antes de continuar.")
+    else:
+        user_creation_form = CustomUserCreationForm()
+
+    return render(request, 'registration/register.html', {'form': user_creation_form})
 
 def exit(request):
     logout(request)

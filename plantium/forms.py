@@ -9,9 +9,30 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class CustomUserCreationForm(UserCreationForm):
-	class Meta:
-		model = User
-		fields = ['username', 'email', 'password1', 'password2']
+    email = forms.EmailField(
+        required=True,
+        error_messages={
+            'invalid': "El correo electrónico no es válido.",
+            'required': "El correo electrónico es obligatorio."
+        }
+    )
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+        error_messages = {
+            'username': {
+                'required': "El nombre de usuario es obligatorio.",
+                'unique': "Este nombre de usuario ya está en uso.",
+                'invalid': "El nombre de usuario contiene caracteres no permitidos."
+            },
+        }
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError("Este correo ya está registrado.")
+        return email
 
 class CreateCropForm(ModelForm):
 	def __init__(self, *args, **kwargs):
