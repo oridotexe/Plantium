@@ -25,7 +25,7 @@
       "humidity_max": 85.0,
       "temp_min": 16.0,
       "temp_max": 30.0,
-      "img_url": "images/plants/tomato.png",
+      "img_url": "images/plants/tomato.webp",
       "watering_freq": 2,
       "harvest_duration": 70,
       "description": "Tomates pequeños y dulces, perfectos para ensaladas y snacks."

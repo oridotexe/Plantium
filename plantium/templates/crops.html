@@ -1,4 +1,4 @@
-{% extends "layouts/base.html" %} {% load custom_filters %} {% block content %}
+{% extends "layouts/base.html" %} {% load custom_filters %}{% load static %} {% block content %}
 
 <div class="col-lg-10 ml-sm-auto px-4">
   <!-- Cultivos en curso -->
@@ -9,54 +9,58 @@
     </div>
   {% endif %}
 
-  <div>
+  <div class="row">
     {% for crop in actives %}
-    <div class="d-flex justify-content-center" >
-      <div class="card shadow-sm border-0 rounded-4 h-100 grow mb-4" style="width: 90%">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">{{ crop.name }}</h5>
-          <p class="text-muted small mb-1">Estado: {{ crop.status }}</p>
-          <p class="text-muted small mb-1">
-            Fecha de inicio: {{ crop.init_date }}
-          </p>
+   <div class="col-md-6 mb-4">
+  <div class="card shadow-sm border-0 rounded-4 grow mb-4" style="overflow: hidden;">
+    <!-- Imagen superior -->
+    <img
+      src="{% static crop.plant.img_url %}"
+      class="card-img-top"
+      alt="{{ crop.plant.name }}"
+      style="height: 200px; object-fit: cover;"
+    />
 
-          <hr />
-          <p class="mb-1"><strong>Planta:</strong> {{ crop.plant.name }}</p>
-          <p class="mb-1">
-            <strong>Variedad:</strong> {{ crop.plant.variety }}
-          </p>
-          <p class="mb-1">
-            <strong>Último riego:</strong>
-            {% if crop.last_watering is none %}
-            <span class="text-danger">No se ha regado</span>
-            {% else %} {{ crop.last_watering }} {% endif %}
-          </p>
-          <p class="mb-3">
-            {% if crop.days_remaining > 0 %} La debes regar en:<strong> {{ crop.days_remaining }}</strong> días 
-            {% elif crop.days_remaining < 0 %} Riego atrasado por:<strong> {{ crop.days_remaining|abs_val }}</strong> días
-            {% elif crop.days_remaining == 1 %} La debes regar mañana 
-            {% else %}La debes regar hoy {% endif %}
-          </p>
-          <div class="d-flex gap-2">
-            <a
-              href="{% url 'update_crop' crop.id %}"
-              class="btn btn-sm btn-outline-primary"
-              >Actualizar</a
-            >
-            <a
-              href="{% url 'culminate_crop' crop.id %}"
-              class="btn btn-sm btn-outline-success"
-              >Terminar</a
-            >
-            <a
-              href="{% url 'delete_crop' crop.id %}"
-              class="btn btn-sm btn-outline-danger"
-              >Eliminar</a
-            >
-          </div>
-        </div>
+    <div class="card-body text-center">
+      <!-- Título -->
+      <h5 class="fw-bold text-uppercase">{{ crop.name }}</h5>
+
+      <!-- Información -->
+      <p class="text-muted small mb-1">Fecha de inicio: {{ crop.init_date }}</p>
+
+      <hr />
+
+      <p class="mb-1"><strong>Planta:</strong> {{ crop.plant.name }}</p>
+      <p class="mb-1"><strong>Variedad:</strong> {{ crop.plant.variety }}</p>
+      <p class="mb-1">
+        <strong>Último riego:</strong>
+        {% if crop.last_watering is none %}
+          <span class="text-danger">No se ha regado</span>
+        {% else %}
+          {{ crop.last_watering }}
+        {% endif %}
+      </p>
+      <p class="mb-3">
+        {% if crop.days_remaining > 0 %}
+          La debes regar en: <strong>{{ crop.days_remaining }}</strong> días
+        {% elif crop.days_remaining < 0 %}
+          Riego atrasado por: <strong>{{ crop.days_remaining|abs_val }}</strong> días
+        {% elif crop.days_remaining == 1 %}
+          La debes regar mañana
+        {% else %}
+          La debes regar hoy
+        {% endif %}
+      </p>
+
+      <!-- Botones -->
+      <div class="d-flex justify-content-center gap-2">
+        <a href="{% url 'update_crop' crop.id %}" class="btn btn-sm btn-outline-primary">Actualizar</a>
+        <a href="{% url 'culminate_crop' crop.id %}" class="btn btn-sm btn-outline-success">Terminar</a>
+        <a href="{% url 'delete_crop' crop.id %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
       </div>
     </div>
+  </div>
+</div>
     {% endfor %}
   </div>
 
@@ -68,29 +72,33 @@
   </div>
   {% endif %}
 
-    {% for crop in finished %}
-    <div class="d-flex justify-content-center">
-      <div class="card shadow-sm border-0 rounded-4 h-100 bg-light grow mb-4" style="width: 90%">
-        <div class="card-body">
-          <h5 class="card-title">{{ crop.name }}</h5>
-          <p class="text-muted small mb-1">Estado: {{ crop.status }}</p>
-          <p class="text-muted small mb-1">
-            Fecha de inicio: {{ crop.init_date }}
-          </p>
-          <p class="mb-3">
-            <strong>Último riego:</strong>
-            {% if crop.last_watering is none %} No se ha regado {% else %}
-            {{crop.last_watering }} {% endif %}
-          </p>
-          <a
-            href="{% url 'delete_crop' crop.id %}"
-            class="btn btn-sm btn-outline-danger"
-            >Eliminar</a
-          >
-        </div>
+<div class="row">
+  {% for crop in finished %}
+  <div class="col-md-6 mb-4">
+    <div class="card shadow-sm border-0 rounded-4 h-100 bg-light grow">
+        <img
+          src="{% static crop.plant.img_url %}"
+          class="card-img-top"
+          alt="{{ crop.plant.name }}"
+          style="height: 200px; object-fit: cover;"
+        />
+      <div class="card-body">
+        <h5 class="card-title"><strong>{{ crop.name }}</strong></h5>
+        <p class="text-muted small mb-1">Fecha de inicio: {{ crop.init_date }}</p>
+        <p class="mb-3">
+          <strong>Último riego:</strong>
+          {% if crop.last_watering is none %}
+            No se ha regado
+          {% else %}
+            {{ crop.last_watering }}
+          {% endif %}
+        </p>
+        <a href="{% url 'delete_crop' crop.id %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
       </div>
     </div>
-    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
 
   <!-- Link recuperar -->
   <div class="mt-4 ms-4 d-flex justify-content-center">
@@ -102,10 +110,4 @@
 </div>
 
 {% endblock %}
-<!-- 
-                    Planta: {{crop.plant.name}} - Variedad: {{crop.plant.variety}} <br>
-                    Ultimo riego:  {% if crop.last_watering is none %} No se ha regado {% else %} {{crop.last_watering}} {% endif %} <br>
 
-
-                    
- -->
