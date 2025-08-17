@@ -17,6 +17,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -28,8 +29,8 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
                     <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Inicio</a>
-                    <a class="nav-link {% if request.path == '/sobre-nosotros/' %}active{% endif %}" href="/">Sobre
-                        nosotros</a>
+                    <a class="nav-link {% if request.path == '/about-us/' %}active{% endif %}"
+                        href="{% url 'about_us' %}">Sobre nosotros</a>
                     <a class="nav-link {% if request.path == '/accounts/login/' %}active{% endif %}"
                         href="{% url 'login' %}">Inicia sesión</a>
                 </div>
@@ -55,4 +56,9 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
 </body>
+
+</html>

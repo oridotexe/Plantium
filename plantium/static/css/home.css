@@ -181,7 +181,7 @@ body.no-sidebar .row {
     flex-direction: column;
 }
 
-/* Estilos del contenedor de registro */
+/* Register */
 .register-container {
     display: flex;
     justify-content: center;
@@ -238,6 +238,65 @@ body.no-sidebar .row {
     background-color: var(--dark-green);
     color: var(--white);
 }
+
+/* About */
+.about-section {
+  background: linear-gradient(90deg, var(--dark-green), var(--light-green));
+  color: var(--white);
+  min-height: 100vh;
+}
+
+
+.about-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: .5px;
+  margin-top: 50px;
+}
+
+.about-text {
+  max-width: 42ch;
+  line-height: 1.6;
+  margin-top: 110px;
+  margin-left: 50px;
+  text-align: center;
+}
+
+.about-grid {
+  text-align: center;
+}
+
+.about-card {
+  margin: 0;
+  position: relative;
+}
+
+.about-card img {
+  width: 230px;      
+  height: 230px;     
+  object-fit: cover; 
+  margin: 0 auto;   
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.about-card:hover img {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.24);
+}
+
+.about-caption {
+  text-align: center;
+  margin-top: .6rem;
+  font-style: italic;
+  opacity: .9;
+}
+
+/* Responsive */
 
 @media (max-width: 991.98px) {
   .navbar-collapse {
@@ -302,11 +361,21 @@ body.no-sidebar .row {
     margin-top: auto;
   }
 
-
   .main-image img {
     width: 100%;
     max-width: 300px;
     height: auto;
+  }
+
+.register-image{
+    display: none !important;
+}
+
+ .about-text {
+    max-width: 100%;
+    margin-top: 0;
+    margin-left: 0;
+    text-align: center;
   }
 }
 

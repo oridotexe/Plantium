@@ -47,6 +47,9 @@ def exit(request):
     logout(request)
     return redirect('login')
 
+def about_us(request):
+    return render(request, 'about_us.html')
+
 @login_required
 def dashboard(request):
     response = request_api('7.76694000', '-72.22500000', is_current=False)
