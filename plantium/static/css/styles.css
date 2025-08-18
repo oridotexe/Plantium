@@ -198,6 +198,18 @@ html,
   padding: 10px;
 }
 
+.delete-icons {
+  position: absolute;
+  color: var(--bg);
+  transition: all 0.3s ease;
+}
+
+.delete-icons:hover {
+  color: var(--bg);
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
 @media (max-width: 900px) {
   .carousel {
     grid-auto-columns: calc(100% / 2 - 15px);
