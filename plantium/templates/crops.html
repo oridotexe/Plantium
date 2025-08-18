@@ -2,7 +2,12 @@
 
 <div class="col-lg-10 ml-sm-auto px-4">
   <!-- Cultivos en curso -->
-  <h2 class="my-4 text-center">Cultivos en curso</h3>
+  <div class="d-flex flex-row align-items-center my-sm-5 gap-3">
+    <h2>Cultivos en curso</h3>
+    <div class="pt-2">
+      <a href="/crop/create" class="btn create-crop-button mb-3 grow">Iniciar nuevo cultivo</a>
+    </div>
+  </div>
   {% if not actives %}
     <div class="d-flex justify-content-center">
       <div class="alert alert-info text-center" style="width: 90%">No hay cultivos en curso.</div>
@@ -70,8 +75,10 @@
     {% endfor %}
   </div>
 
+  <hr class="my-4">  
+
   <!-- Cultivos terminados -->
-  <h2 class="my-4 text-center">Cultivos terminados</h3>
+  <h2 class="my-4">Cultivos terminados</h3>
   {% if not finished %}
   <div class="d-flex justify-content-center">
   <div class="alert alert-info text-center"  style="width: 90%">No hay cultivos terminados.</div>
@@ -107,8 +114,8 @@
 </div>
 
   <!-- Link recuperar -->
-  <div class="mt-4 ms-4 d-flex justify-content-center">
-    <p class="small" style="width: 90%;">
+  <div class="mt-4 ms-4 d-flex justify-content-start">
+    <p class="small">
       Para recuperar tus cultivos eliminados presiona
       <a href="{% url 'deleted_crops' %}" class="text-primary" >aquí.</a>
     </p>
