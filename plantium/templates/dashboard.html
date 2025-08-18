@@ -21,34 +21,49 @@
       </header>
 
       <div class="row">
+
         <div class="col-lg-10 ml-sm-auto px-5">
 
-          <div class="carousel-container">
-            <div class="carousel carousel--scroll-buttons carousel--scroll-markers">
-              {% for plant in recommended %}
-                <a href="{% url "create_crop_with_plant" plant.id %}" style="text-decoration: none">
-                  <div class="carousel__slide" data-label="Montañas">
-                      <img src="{% static plant.img_url %}" alt="{{ plant.name }}" class="carousel__img">
-                      <div class="carousel__caption">
-                          <h3>{{ plant.name }}</h3>
-                          <p>{{ plant.variety }}</p>
-                      </div>
-                  </div>
-                </a>
-              {% endfor %}
+          {% if recommended|length > 0 %}
+            <div class="carousel-container">
+              <div class="carousel carousel--scroll-buttons carousel--scroll-markers">
+                {% for plant in recommended %}
+                  <a href="{% url "create_crop_with_plant" plant.id %}" style="text-decoration: none">
+                    <div class="carousel__slide" data-label="Montañas">
+                        <img src="{% static plant.img_url %}" alt="{{ plant.name }}" class="carousel__img">
+                        <div class="carousel__caption">
+                            <h3>{{ plant.name }}</h3>
+                            <p>{{ plant.variety }}</p>
+                        </div>
+                    </div>
+                  </a>
+                {% endfor %}
+              </div>
+              <!-- Contenedor para marcadores (generado automáticamente) -->
+              <div class="marker-container"></div>
             </div>
-            <!-- Contenedor para marcadores (generado automáticamente) -->
-            <div class="marker-container"></div>
-          </div>
+          {% else %}
+            <img
+                src="{%static 'images/fresas.png'%}"
+                height="320px"
+                class="cultivo-img"
+                alt="Campo Fresas"
+                style="border-radius: 20px"
+              />
+            <div class="d-flex align-items-center justify-content-center z-2" style="margin-top: -170px">
+              <h3 class="text-white font-weight-bold fs-4 mt-2 mb-3">
+                Ups, por ahora no tenemos recomendaciones para tu zona
+              </h3>
+            </div>
+          {% endif %}
+        </div> 
 
-        </div>   
         <div class="col-lg-2 ml-sm-auto px-4 mt-lg-5">
           <div class="card mb-3" style="border-radius: 20px">
             <div class="card-body">
               <strong>Sabías que...</strong>
               <p class="mb-0">
-                Cultivar el futuro es más fácil cuando sabes cuándo regar y
-                cuándo esperar.
+                Cultivar el futuro es más fácil cuando sabes qué sembrar y cuándo regar.
               </p>
             </div>
           </div>

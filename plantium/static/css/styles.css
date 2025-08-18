@@ -30,7 +30,7 @@ html,
 
 .cultivo-img {
   width: 100%;
-  height: 320px;
+  height: 320px !important;
   object-fit: cover;
 }
 .create-crop-button {

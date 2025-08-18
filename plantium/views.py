@@ -49,8 +49,6 @@ def dashboard(request):
     data_list = create_data_list(cleaned_data)
     if data_list is not None:
         recommended = generate_recomendations(data_list.get('temps'), data_list.get('hums'))
-
-    cards = [1,2,3]
     
     return render(request, 'dashboard.html',{'measurements':cleaned_data, 'date': date_today, 'recommended': recommended})
 
