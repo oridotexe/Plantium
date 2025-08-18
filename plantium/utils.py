@@ -7,6 +7,8 @@ import numpy as np
 
 def calculate_next_watering(last_watering: date , watering_freq: int):
     date_today = date.today()
+    if last_watering is None:
+        last_watering = date_today - timedelta(days=watering_freq)
     prox_watering_date = last_watering + timedelta(days=watering_freq)
     prox_watering_days = (prox_watering_date - date_today).days
 
