@@ -143,7 +143,7 @@ CELERY_TIMEZONE = 'America/Caracas'
 CELERY_BEAT_SCHEDULE = {
     "check-watering-daily-7am": {
         "task": "plantium.tasks.run_check_watering",
-        "schedule": crontab(hour=0, minute=25),
+        "schedule": crontab(hour=7, minute=0),
     },
 }
 
