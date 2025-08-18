@@ -210,6 +210,14 @@ html,
   transform: scale(1.2);
 }
 
+.btn-card-crop {
+  transition: all 0.3s ease;
+}
+
+.btn-card-crop:hover {
+  transform: scale(1.1) translate(0px, -2px);
+}
+
 @media (max-width: 900px) {
   .carousel {
     grid-auto-columns: calc(100% / 2 - 15px);
