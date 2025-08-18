@@ -50,7 +50,7 @@ def dashboard(request):
     if data_list is not None:
         recommended = generate_recomendations(data_list.get('temps'), data_list.get('hums'))
     
-    return render(request, 'dashboard.html',{'measurements':cleaned_data})
+    return render(request, 'dashboard.html',{'measurements':cleaned_data, 'date': date_today, 'recommended': recommended})
 
 
 @login_required
@@ -70,7 +70,8 @@ def my_crops(request):
     return render(request, 'crops.html', {'actives': actives, 'finished': finished})
 
 @login_required
-def create_crop(request):
+def create_crop(request,  plant_id=None):
+    plant = get_object_or_404(Plant, id=plant_id) if plant_id else None
     if request.method == 'POST':
         form = CreateCropForm(request.POST, user=request.user)
         if form.is_valid():
@@ -79,7 +80,8 @@ def create_crop(request):
             new_crop.save()
             return redirect('dashboard')
     else:
-        form = CreateCropForm()
+        initial_data = {'plant': plant.id} if plant else {}
+        form = CreateCropForm(initial=initial_data)
 
     return render(request, 'create_crop.html', {'form': form})
 

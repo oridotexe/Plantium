@@ -2,8 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const measurements = JSON.parse(
     document.getElementById('measurements-data').textContent
   );
-    let labels = Object.values(measurements).map(m => m.date);
-  console.log(labels);
+  let labels = Object.values(measurements).map(m => {
+  let d = new Date(m.date);
+  let day = String(d.getDate()).padStart(2, '0');
+  let month = String(d.getMonth() + 1).padStart(2, '0');
+  let hours = String(d.getHours()).padStart(2, '0');
+  let minutes = String(d.getMinutes()).padStart(2, '0');
+  return [`${day}-${month}`, `${hours}:${minutes}`];
+  });
   
   const temps = Object.values(measurements).map(m => m.temp);
   const hums = Object.values(measurements).map(m => m.hum);
@@ -16,8 +22,8 @@ new Chart(document.getElementById('comboChart'), {
         type: 'line',
         label: 'Temperatura',
         data: temps,
-        borderColor: '#ff6384',
-        backgroundColor: '#ff6384',
+        borderColor: '#ff5722',
+        backgroundColor: '#ff5722',
         yAxisID: 'y',
       },
       {
@@ -36,12 +42,12 @@ new Chart(document.getElementById('comboChart'), {
       y: {
         position: 'left',
         ticks: {
-          color: '#ff6384'  // color de los números del eje izquierdo
+          color: '#ff5722'  // color de los números del eje izquierdo
         },
         title: {
           display: true,
           text: 'Temperatura (°C)',
-          color: '#ff6384'  // color del título del eje izquierdo
+          color: '#ff5722'  // color del título del eje izquierdo
         }
       },
       y1: {
