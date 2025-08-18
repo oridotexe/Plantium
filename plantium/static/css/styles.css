@@ -18,7 +18,6 @@ html,
 }
 .sidebar {
   background-color: var(--primary);
-   background: linear-gradient(45deg, var(--primary), var(--light-green)); 
 }
 
 @media (min-width: 992px) {

@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const measurements = JSON.parse(
     document.getElementById('measurements-data').textContent
   );
-  console.log("hola");
     let dateStr = Object.values(measurements).map(m => m.date);
     const date = new Date(dateStr.replace(" ", "T")); 
 
