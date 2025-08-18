@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+from celery.schedules import crontab
 
 from dotenv import load_dotenv
 # Api del clima
@@ -133,8 +134,18 @@ EMAIL_HOST_PASSWORD = EMAIL_APP_KEY
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Configuración de Celery
-CELERY_BROKER_URL = 'redis://localhost:6379/0'  # URL de Redis
-CELERY_TIMEZONE = 'America/Caracas'  # Ajusta tu zona horaria
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'America/Caracas'
+CELERY_BEAT_SCHEDULE = {
+    "check-watering-daily-7am": {
+        "task": "plantium.tasks.run_check_watering",
+        "schedule": crontab(hour=0, minute=25),
+    },
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
