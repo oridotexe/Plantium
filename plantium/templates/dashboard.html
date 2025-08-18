@@ -5,8 +5,8 @@
       <header class="d-flex justify-content-between align-items-center mt-4">
         <div>
           <h2>Dashboard</h2>
-          <small class="text-muted">4:45 pm 21 Jul 2025</small>
-          <h5 class="mt-2">Cultivo con más tiempo</h5>
+          <small class="text-muted">{{date}}</small>
+          <h5 class="mt-3">Recomendaciones de cultivos</h5>
         </div>
         <div class="d-flex align-items-center">
           <span class="me-2">{{ user.username }}</span>
@@ -21,24 +21,26 @@
       </header>
 
       <div class="row">
-        <div class="col-lg-10 ml-sm-auto px-4">
-          <!-- Main image -->
-          <div class="card mb-4" style="border-radius: 20px">
-            <img
-              src="{%static 'images/fresas.png'%}"
-              height="320px"
-              class="cultivo-img"
-              alt="Campo Fresas"
-              style="border-radius: 20px"
-            />
-            <div
-              class="card-img-overlay d-flex align-items-center justify-content-center"
-            >
-              <h3 class="text-white font-weight-bold">CAMPO FRESAS</h3>
+        <div class="col-lg-10 ml-sm-auto px-5">
+
+          <div class="carousel-container">
+            <div class="carousel carousel--scroll-buttons carousel--scroll-markers">
+              {% for plant in recommended %}
+                <div class="carousel__slide" data-label="Montañas">
+                    <img src="{% static plant.img_url %}" alt="{{ plant.name }}" class="carousel__img">
+                    <div class="carousel__caption">
+                        <h3>{{ plant.name }}</h3>
+                        <p>{{ plant.variety }}</p>
+                    </div>
+                </div>
+              {% endfor %}
             </div>
+            <!-- Contenedor para marcadores (generado automáticamente) -->
+            <div class="marker-container"></div>
           </div>
-        </div>
-        <div class="col-lg-2 ml-sm-auto px-4">
+
+        </div>   
+        <div class="col-lg-2 ml-sm-auto px-4 mt-lg-5">
           <div class="card mb-3" style="border-radius: 20px">
             <div class="card-body">
               <strong>Sabías que...</strong>
@@ -48,33 +50,29 @@
               </p>
             </div>
           </div>
-          <a href="/crop/create" class="btn create-crop-button mb-3 grow"
-            >Iniciar nuevo cultivo</a
-          >
-
-          <a href = "{% url "my_crops" %}" class="btn create-crop-button mb-3 grow">
-            Ver Cultivos
-          </a>
+          <a href="/crop/create" class="btn create-crop-button mb-3 grow">Iniciar nuevo cultivo</a>
         </div>
       </div>
-      <div class="row">
+      
+      <div class="row  mb-4">
+        <h5 class="ps-3 my-3">Pronósticos de clima</h5>
         <div class="col-lg-10 ml-sm-auto px-4">
           <!-- Pronósticos & Info -->
           {{ measurements|json_script:"measurements-data" }}
-          <div style="height: 300px; position: relative;" class="card">
+          <div style="height: 300px; position: relative;" class="card mb-3 mb-lg-0">
             <canvas id="comboChart"></canvas>
           </div>          
         </div>
         <div class="col-lg-2 ml-sm-auto px-4">
 
-          <div class="card mb-2" style="border-radius: 20px">
+          <div class="card mb-2 h-50" style="border-radius: 20px">
             <div class="card-body text-center">
               <strong>Temperatura</strong>
               <div>25° C</div>
             </div>
           </div>
 
-          <div class="card mb-2" style="border-radius: 20px">
+          <div class="card mb-2 h-50" style="border-radius: 20px">
             <div class="card-body text-center">
               <strong>Humedad</strong>
               <div>30%</div>

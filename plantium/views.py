@@ -7,28 +7,13 @@ from .forms import CreateCropForm, CustomUserCreationForm
 from .models import Crop, Plant
 from .utils import *
 from django.contrib import messages
+from datetime import datetime
 
 # Create your views here.
 
 def home(request):
     return render(request, 'home.html')
 
-"""
-def register(request):
-    data = {
-        'form': CustomUserCreationForm()
-    }
-    if request.method == 'POST':
-        user_creation_form = CustomUserCreationForm(data=request.POST)
-        if user_creation_form.is_valid():
-            user = user_creation_form.save()
-            user.email = user_creation_form.cleaned_data['email']
-            user.save()
-            user = authenticate(username=user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password1'])
-            login(request, user)
-            return redirect('dashboard') # P0ll1t0893
-    return render(request, 'registration/register.html', data)
-"""
 def register(request):
     if request.method == 'POST':
         user_creation_form = CustomUserCreationForm(data=request.POST)
@@ -54,12 +39,15 @@ def about_us(request):
 def dashboard(request):
     response = request_api('7.76694000', '-72.22500000', is_current=False)
     cleaned_data = None if response is None else process_weather_data(response)
+    date_today = datetime.today()
     
     data_list = create_data_list(cleaned_data)
     if data_list is not None:
         recommended = generate_recomendations(data_list.get('temps'), data_list.get('hums'))
+
+    cards = [1,2,3]
     
-    return render(request, 'dashboard.html',{'measurements':cleaned_data})
+    return render(request, 'dashboard.html',{'measurements':cleaned_data, 'date': date_today, 'recommended': recommended})
 
 @login_required
 def plants(request):

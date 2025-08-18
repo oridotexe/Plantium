@@ -43,6 +43,190 @@ html,
   color: white;
 }
 
+/* RECOMMENDATIONS */
+/* Carrusel CSS */
+.carousel-container {
+  position: relative;
+  max-width: 1000px;
+  margin: 0rem auto 2rem;
+}
+
+.carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(100% / 3 - 20px);
+  gap: 30px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 20px 30px 40px 30px;
+  scroll-padding: 0 30px;
+  anchor-name: --carousel;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__slide {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 350px;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  background: var(--card-bg);
+}
+
+.carousel__slide:hover {
+  transform: scale(1);
+}
+
+.carousel__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  padding: 25px 20px 15px;
+  text-align: left;
+}
+
+.carousel__caption h3 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.carousel__caption p {
+  font-size: 1rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* Botones de desplazamiento */
+.carousel--scroll-buttons::scroll-button(*) {
+  position: fixed;
+  position-anchor: --carousel;
+  font-family: 'Material Icons Outlined';
+  background: rgba(15, 23, 42, 0.9);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  color: var(--accent);
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.carousel--scroll-buttons::scroll-button(*):hover {
+  background: var(--accent);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.carousel--scroll-buttons::scroll-button(right) {
+  position-area: inline-end center;
+  content: 'arrow_forward' / 'Siguiente';
+}
+
+.carousel--scroll-buttons::scroll-button(left) {
+  position-area: inline-start center;
+  content: 'arrow_back' / 'Anterior';
+}
+
+/* Marcadores de desplazamiento */
+.carousel--scroll-markers {
+  scroll-marker-group: after;
+}
+
+.carousel--scroll-markers::scroll-marker-group {
+  position: fixed;
+  position-anchor: --carousel;
+  position-area: block-end;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  z-index: 10;
+}
+
+.carousel__slide::scroll-marker {
+  content: '' / attr(data-label);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel__slide::scroll-marker:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.2);
+}
+
+.carousel__slide::scroll-marker:target-current {
+  background: var(--accent);
+  transform: scale(1.3);
+}
+
+.marker-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  padding: 10px;
+}
+
+@media (max-width: 900px) {
+  .carousel {
+    grid-auto-columns: calc(100% / 2 - 15px);
+  }
+
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-card {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+  .carousel {
+    grid-auto-columns: 100%;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .carousel-container {
+    padding: 15px;
+  }
+}
+
 @media (min-width: 992px) {
   .grow {
     transition: all 0.2s ease-in-out;
