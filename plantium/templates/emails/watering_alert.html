@@ -1,0 +1,19 @@
+<p>!Hola {{ user.username }}!.</p>
+
+{% if crops_today %}
+<h3>⚠️ Hoy debes regar estos cultivos:</h3>
+<ul>
+    {% for crop in crops_today %}
+    <li>{{ crop.name }} ({{ crop.plant.name }})</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if crops_tomorrow %}
+<h3>🔜 Mañana debes regar estos cultivos:</h3>
+<ul>
+    {% for crop in crops_tomorrow %}
+    <li>{{ crop.name }} ({{ crop.plant.name }})</li>
+    {% endfor %}
+</ul>
+{% endif %}
