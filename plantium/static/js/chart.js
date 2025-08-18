@@ -22,8 +22,8 @@ new Chart(document.getElementById('comboChart'), {
         type: 'line',
         label: 'Temperatura',
         data: temps,
-        borderColor: '#ff6384',
-        backgroundColor: '#ff6384',
+        borderColor: '#ff5722',
+        backgroundColor: '#ff5722',
         yAxisID: 'y',
       },
       {
@@ -42,12 +42,12 @@ new Chart(document.getElementById('comboChart'), {
       y: {
         position: 'left',
         ticks: {
-          color: '#ff6384'  // color de los números del eje izquierdo
+          color: '#ff5722'  // color de los números del eje izquierdo
         },
         title: {
           display: true,
           text: 'Temperatura (°C)',
-          color: '#ff6384'  // color del título del eje izquierdo
+          color: '#ff5722'  // color del título del eje izquierdo
         }
       },
       y1: {
