@@ -2,8 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const measurements = JSON.parse(
     document.getElementById('measurements-data').textContent
   );
-    let labels = Object.values(measurements).map(m => m.date);
-  console.log(labels);
+  let labels = Object.values(measurements).map(m => {
+  let d = new Date(m.date);
+  let day = String(d.getDate()).padStart(2, '0');
+  let month = String(d.getMonth() + 1).padStart(2, '0');
+  let hours = String(d.getHours()).padStart(2, '0');
+  let minutes = String(d.getMinutes()).padStart(2, '0');
+  return [`${day}-${month}`, `${hours}:${minutes}`];
+  });
   
   const temps = Object.values(measurements).map(m => m.temp);
   const hums = Object.values(measurements).map(m => m.hum);
