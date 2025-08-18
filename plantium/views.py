@@ -61,7 +61,7 @@ def dashboard(request):
             lambda item: datetime.strptime(item[1]['date'], "%Y-%m-%d %H:%M:%S").hour in allowed_hours,
             cleaned_data.items()
         ))
-    print(cleaned_data)
+
     data_list = create_data_list(cleaned_data)
     if data_list is not None:
         recommended = generate_recomendations(data_list.get('temps'), data_list.get('hums'))
