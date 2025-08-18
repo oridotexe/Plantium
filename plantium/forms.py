@@ -35,6 +35,20 @@ class CustomUserCreationForm(UserCreationForm):
             raise forms.ValidationError("Este correo ya está registrado.")
         return email
 
+class CustomDateInput(forms.DateInput):
+    def __init__(self, **kwargs):
+        kwargs.setdefault('attrs', {}).update({
+            'type': 'date',
+            'class': 'form-control',
+        })
+        super().__init__(**kwargs)
+
+    def format_value(self, value):
+        if value is None:
+            return ''
+        if isinstance(value, str):
+            return value
+        return value.strftime('%Y-%m-%d')
 
 class CreateCropForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -48,12 +62,8 @@ class CreateCropForm(ModelForm):
         model = Crop
         fields = ['name', 'plant', 'init_date', 'last_watering']
         widgets = {
-            'init_date': DateInput(
-                attrs={'type': 'date', 'class': 'form-control'}
-            ),
-            'last_watering': DateInput(
-                attrs={'type': 'date', 'class': 'form-control'}
-            ),
+            'init_date': CustomDateInput(),
+            'last_watering': CustomDateInput(),
         }
 
     def clean(self):
