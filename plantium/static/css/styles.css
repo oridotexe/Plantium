@@ -3,6 +3,7 @@
   --bg: #fcf6eb;
   --dashboard-bg: #e4fbc944;
   --primary: #5c7d55;
+  --light-green: #A1C08B;
   --secondary: #eceabe;
   --accent: #aadd66;
 }
@@ -17,6 +18,7 @@ html,
 }
 .sidebar {
   background-color: var(--primary);
+   background: linear-gradient(45deg, var(--primary), var(--light-green)); 
 }
 
 @media (min-width: 992px) {
