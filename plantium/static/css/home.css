@@ -1,4 +1,3 @@
-/* Establecer los colores como variables */
 :root {
     --dark-green: #4A6B46;
     --light-green: #A1C08B;
@@ -11,31 +10,46 @@
     --bright-green: #AADD66;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
 /* Navbar */
 .navbar {
     background: linear-gradient(90deg, var(--dark-green), var(--light-green)); 
     padding: 10px 0;
 }
 
-.navbar-container {
-    position: absolute;  
-    top: 0;
-    left: 60px; 
-    right: 60px; 
-    width: auto; 
-    z-index: 10; 
-    background-color: var(--white);
-    border-bottom: 2px solid var(--white); 
+.navbar .navbar-collapse {
+    justify-content: center !important;
 }
 
-.navbar-toggler-icon {
-    background-color: var(--white); 
+.navbar .navbar-brand {
+    color: var(--white) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-decoration: none;
 }
 
 .navbar-colors-items {
     color: var(--white);
     font-weight: 700;
     font-size: larger;
+}
+
+.navbar-nav {
+    display: flex !important;
+    justify-content: center;
+    gap: 15rem;
+    margin-right: 20%;
+}
+
+.navbar-nav .nav-link{
+    color: var(--white) !important; 
+    font-size: large;
 }
 
 .navbar-nav .nav-link:hover {
@@ -48,6 +62,11 @@
 }
 
 /* Toggler  */
+
+.navbar-toggler-icon {
+    background-color: transparent; 
+}
+
 .navbar-toggler {
     border: none;  
 }
@@ -67,11 +86,11 @@
 }
 
 
-
 /* Home */
 
 .main-section {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 100vh;
@@ -113,14 +132,14 @@
     text-align: center;
 }
 
-.main-image {
+.desktop-image {
     position: relative;
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
     left: 3%;
 }
 
-.main-image img {
+.desktop-image img {
     width: 110%;
     height: auto;
     border-radius: 15px;
@@ -128,8 +147,247 @@
 }
 
 
+.mobile-image {
+    display: none;
+}
+
+.btn-plantium {
+    background-color: var(--pastel-green);
+    color: var(--intense-green);
+    font-weight: bold;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-plantium:hover {
+    background-color: var(--dark-green);
+    color: var(--white);
+}
+
+/* Register */
+body.no-sidebar .sidebar {
+    display: none !important;
+}
+
+body.no-sidebar .col-lg-2 {
+    display: none !important;
+}
+
+body.no-sidebar .row {
+    flex-direction: column;
+}
+
+/* Register */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(90deg, var(--dark-green), var(--light-green));
+    padding: 20px;
+}
+
+.register-card {
+    display: flex;
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.register-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--white);
+    padding: 20px;
+}
+
+.register-image img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.register-form {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-plantium {
+    background-color: var(--pastel-green);
+    color: var(--intense-green);
+    font-weight: bold;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-plantium:hover {
+    background-color: var(--dark-green);
+    color: var(--white);
+}
+
+/* About */
+.about-section {
+  background: linear-gradient(90deg, var(--dark-green), var(--light-green));
+  color: var(--white);
+  min-height: 100vh;
+}
 
 
+.about-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: .5px;
+  margin-top: 50px;
+}
 
+.about-text {
+  max-width: 42ch;
+  line-height: 1.6;
+  margin-top: 110px;
+  margin-left: 50px;
+  text-align: center;
+}
+
+.about-grid {
+  text-align: center;
+}
+
+.about-card {
+  margin: 0;
+  position: relative;
+}
+
+.about-card img {
+  width: 230px;      
+  height: 230px;     
+  object-fit: cover; 
+  margin: 0 auto;   
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.about-card:hover img {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.24);
+}
+
+.about-caption {
+  text-align: center;
+  margin-top: .6rem;
+  font-style: italic;
+  opacity: .9;
+}
+
+/* Responsive */
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    margin-top: 1rem;
+  }
+
+  .navbar-nav {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem;
+    padding-left: 1rem; 
+  }
+
+  .navbar-nav .nav-link {
+    margin: 0 !important;
+    padding: 0.5rem 0;
+    text-align: left !important; 
+    width: 100%;
+  }
+    
+  /* Main section  */
+  .main-section {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1rem;
+    text-align: center;
+    height: 100vh;
+  }
+
+  .main-content {
+    align-items: center;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .main-content .subtitle {
+    margin-left: 0;
+    font-size: 1rem;
+  }
+
+  .main-content h1 {
+    margin-left: 0;
+    font-size: 3rem; 
+    animation: slideUpFade 1.2s ease-out forwards;
+  }
+
+  .main-content .home-text {
+    margin-left: 0;
+    padding: 0 1rem;
+    font-size: 1rem;
+    animation: slideUpFade 1.2s ease-out forwards;
+  }
+
+  .desktop-image {
+    display: none !important;
+  }
+
+  .mobile-image {
+    display: flex !important;
+    justify-content: center;
+    margin-top: auto;
+  }
+
+  .main-image img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+
+.register-image{
+    display: none !important;
+}
+
+ .about-text {
+    max-width: 100%;
+    margin-top: 0;
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 

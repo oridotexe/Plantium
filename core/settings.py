@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+# Api del clima
+load_dotenv()  
+OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -90,25 +95,23 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    {'NAME': 'plantium.validators.CustomMinimumLengthValidator', 'OPTIONS': {'min_length': 8}},
+    {'NAME': 'plantium.validators.CustomNumericPasswordValidator'},
+    {'NAME': 'plantium.validators.CombinedPasswordValidator',
+        'OPTIONS': {
+            'forbidden_passwords': ["123456", "password", "admin", "qwerty", "turkey01"],
+            'regex_patterns': [
+                r"^[A-Za-z]+\d{2}[^A-Za-z0-9]$",
+                r"^[A-Za-z]+\d{4}$"
+            ]
+        }
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 

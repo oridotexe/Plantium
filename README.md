@@ -35,14 +35,12 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. Realiza las migraciones:
+5. Realiza las migraciones:
 ```Bash
 python manage.py migrate
 ```
 
-5. Corre el servidor:
+7. Corre el servidor:
 ```Bash
 python manage.py runserver
 ```
-
-

@@ -1,13 +1,51 @@
-{% extends 'layouts/base.html' %}
-{% block content %}
-    <div class="col-lg-10">
-        <h1>Plantas</h1>
-        {% for plant in plants %}
-            <ul>
-                <li>
-                    {{plant.name}} - Variedad: {{plant.variety}}<br>
-                </li>
-            </ul>
-        {% endfor %}
+{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+<div class="col-lg-10 ml-sm-auto px-4">
+  <h1 class="text-center mt-2">Plantas</h1>
+
+  <div class="row">
+    {% for plant in plants %}
+    <div class="col-md-6 mb-4">
+      <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden grow">
+        <div class="row g-0 h-100">
+          <!-- Imagen -->
+          <div
+            class="col-4 bg-light d-flex align-items-center justify-content-center p-2"
+          >
+            <img
+              src="{% static plant.img_url %}"
+              alt="{{ plant.name }}"
+              class="img-fluid rounded"
+              style="max-height: 140px; object-fit: contain"
+            />
+          </div>
+
+          <!-- Texto -->
+          <div class="col-8">
+            <div class="card-body d-flex flex-column justify-content-center">
+              <h5 class="card-title fw-bold mb-1">{{ plant.name }}</h5>
+              <p class="text-muted small mb-2">Variedad: {{ plant.variety }}</p>
+              <p
+                class="card-text small text-secondary"
+                style="line-height: 1.4"
+              >
+                {{ plant.description }}
+              </p>
+              <hr class="my-2" />
+              <div class="d-flex flex-wrap small text-muted">
+                <div class="me-3">
+                  💧 {{ plant.humidity_min }}% - {{ plant.humidity_max }}%
+                </div>
+                <div class="me-3">
+                  🌡️ {{ plant.temp_min }}°C - {{ plant.temp_max }}°C
+                </div>
+                <div class="me-3">⏳ {{ plant.harvest_duration }} días</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
